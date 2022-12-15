@@ -3,7 +3,7 @@
 En este documento se describen las principales conclusiones asociadas con el análisis de patrones de gasto en alimentos saludables y no saludables, como función de de observables estadísticos de interés como el *nivel socioeconómico*, la percepción  de *ingresos extra* y el riesgo de padecer *insuficiencia alimentaria*. Así mismo, se presentan las principales conclusiones extraídas del análisis de un modelo de regresión logístico utilizado para encontrar los parámetros socioeconómicos determinantes para padecer o no insuficiencia alimentaria. 
 
 Como punto de partida, se realizó una limpieza de datos, seguida de un análisis exploratorio, en busca de enetender la muestra de datos con la que se está trabajando. En la figura 1 se muestran los resultados obtenidos a partír de esté análisis exploratorio.
-![The San Juan Mountains are beautiful!](analisis1.jpg)
+![Analisis exploratorio de base de datos!](/analisis1.jpg)
 
 ## Patrones de gasto como función de nivel socioeconómico, ingresos extra e insuficiencia alimentaria
 
