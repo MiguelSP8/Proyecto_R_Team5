@@ -1,4 +1,6 @@
 '
+ESTE ES UN CAMBIO DE OSWALDO
+
 Un centro de salud nutricional está interesado en analizar estadísticamente y probabilísticamente 
 los patrones de gasto en alimentos saludables y no saludables en los hogares mexicanos con base en
 su nivel socioeconómico, en si el hogar tiene recursos financieros extras al ingreso y en si presenta 
