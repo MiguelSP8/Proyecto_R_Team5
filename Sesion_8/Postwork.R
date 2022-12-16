@@ -204,7 +204,7 @@ dev.off()
 # con un sesgo a la derecha (distribución tipo gamma). Algo similar se observa 
 # en la distribución de edad del jefe de familia. La distribución de los años de
 # estudio es algo más complicada de entender, los picos coinciden con la culminación
-# de algún grado, siendo los maás frecuentes los asociados a la secundaria y preparatoria.
+# de algún grado, siendo los más frecuentes los asociados a la secundaria y preparatoria.
 #
 #
 # Ahora que ya conocemos nuestra muestra, es momento de analizar los patrones de 
@@ -1331,4 +1331,4 @@ exp(coef(logistic.2))# quitamos logaritmo
 "
 6) Escribe tu análisis en un archivo README.MD y tu código en un script de R y publica ambos en un repositorio de Github.
 "
-# prueba jc
+
