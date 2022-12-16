@@ -1331,3 +1331,4 @@ exp(coef(logistic.2))# quitamos logaritmo
 "
 6) Escribe tu análisis en un archivo README.MD y tu código en un script de R y publica ambos en un repositorio de Github.
 "
+# prueba jc
