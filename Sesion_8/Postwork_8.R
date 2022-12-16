@@ -1,7 +1,6 @@
 # CAMBIO CARLOS
-'
-ESTE ES UN CAMBIO DE OSWALDO
 
+'
 Un centro de salud nutricional está interesado en analizar estadísticamente y probabilísticamente 
 los patrones de gasto en alimentos saludables y no saludables en los hogares mexicanos con base en
 su nivel socioeconómico, en si el hogar tiene recursos financieros extras al ingreso y en si presenta 
@@ -16,7 +15,7 @@ inseguridad alimentaria.
 
 La base de datos contiene las siguientes variables:
   
-  nse5f (Nivel socioeconómico del hogar): 1 "Bajo", 2 "Medio bajo", 3 "Medio", 4 "Medio alto", 5 "Alto"
+nse5f (Nivel socioeconómico del hogar): 1 "Bajo", 2 "Medio bajo", 3 "Medio", 4 "Medio alto", 5 "Alto"
 area (Zona geográfica): 0 "Zona urbana", 1 "Zona rural"
 numpeho (Número de persona en el hogar)
 refin (Recursos financieros distintos al ingreso laboral): 0 "no", 1 "sí"
@@ -131,7 +130,7 @@ df%>%select(nse5f,refin,IA,ln_als,ln_alns)%>%group_by(refin,IA,nse5f)%>%summariz
 # Para el cálculo de las probabilidades, vamos a trabajar con la razón entre el gasto en ALNS y ALS
 
 # 1) ¿Cuál es la probabilidad de que los hogares que no reciben ingresos extra 
-# destinen relativamente más recursos al consumo de ALNS que el promedio de 
+# destinen relativamente más recursos al consumo de ALNS, que el promedio de 
 #los hogares que sí perciben ingresos extra?
 
 mean.si <- df.vis.ref%>%filter(refin=="Si")%>%select(avg_rate)
@@ -159,7 +158,7 @@ text(0.25*q, 2.0,paste("q=",round(q,4)),col=2)
 text(0.25*q, 1.8,paste("mu=",round(mean,4)),col=2)
 text(1.2, 2.0,paste("P(x>q)=",round(res,3)),col=3)
 
-# 2) ¿Cuál es la probabilidad de que los hogares que padecen IA relativamente
+# 2) ¿Cuál es la probabilidad de que los hogares que padecen IA relativamente,
 # destinen más recursos al consumo de ALNS, que el promedio de los hogares que no
 # padecen IA?
 
