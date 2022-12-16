@@ -4,7 +4,7 @@ En este documento se describen las principales conclusiones asociadas con el an�
 
 Como punto de partida, se realizó una limpieza de datos, seguida de un análisis exploratorio, en busca de enetender la muestra de datos con la que se está trabajando. En la figura 1 se muestran los resultados obtenidos a partír de esté análisis exploratorio.
 
-![**Figura 1:** Resultados del análisis exploratorio de datos.](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/analisis1.png "**Figura 1:** ")
+![**Figura 1:** Resultados del análisis exploratorio de datos.](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/analisis1.png "Figura 1:")
 
 
 ## Patrones de gasto como función de nivel socioeconómico, ingresos extra e insuficiencia alimentaria
