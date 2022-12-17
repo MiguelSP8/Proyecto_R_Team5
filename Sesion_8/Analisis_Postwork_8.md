@@ -77,13 +77,12 @@ Nos interesa analizar los patrones de gasto en alimentos saludables y no saludab
 * Si presenta o no inseguridad alimentaria.
 ```
 Recordando:
-```
-si muestra>=30 o conocemos varianza de población => Normal
-si muestra<30 Y no conocemos varianza de población => t-student
-```
-_En nuestro caso, desconocemos el dato preciso de las medidas de tendencia central y dispersión estadística de la población, usaremos la prueba **t.test()** para verificar si la media muestral para cada una de las 20 combinaciones posibles de las variables IA, refin y nse5f son representativas de la población.
+* si muestra>=30 o conocemos varianza de población => Normal
+* si muestra<30 Y no conocemos varianza de población => t-student
 
-## Nuestros planteamientos son:**
+_En nuestro caso, desconocemos el dato preciso de las medidas de tendencia central y dispersión estadística de la población, usaremos la prueba **t.test()** para verificar si la media muestral para cada una de las 20 combinaciones posibles de las variables IA, refin y nse5f son representativas de la población._
+
+## Nuestros planteamientos son:
 
 ### 1) Existe evidencia estadística para asumir que los hogares mexicanos que pertenecen a un nivel socioeconómico (NSE) alto, en promedio, gastan más en alimentos NO saludables que los hogares que pertenecen a un nivel socioeconómico (NSE) menor a Alto.
 
@@ -92,16 +91,14 @@ _En nuestro caso, desconocemos el dato preciso de las medidas de tendencia centr
 ![**Figura 4.1:** BoxPlot NSE Alto vs NSE < Alto](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_1_boxplot.PNG "Figura 4.1: BoxPlot NSE Alto vs NSE < Alto")
 
 #### Planteamiento de hipótesis:
-```
-Hipótesis nula, Ho: mu(ln_alns)_nse5f('alto') <=  mu(ln_alns)_nse5f('< que alto')
-Hipótesis alternativa, Ha: mu(ln_alns)_NSE('alto') >  mu(ln_alns)_NSE('< que alto')
 
-Se están comparando dos grupos, por lo tanto se analizará la varianza de las dos muestras (inferencia sobre la media de dos poblaciones)
-```
-## Ejecutando las pruebas ⚙️
+* **Hipótesis nula, Ho: mu(ln_alns)_nse5f('alto') <=  mu(ln_alns)_nse5f('< que alto')**
+* **Hipótesis alternativa, Ha: mu(ln_alns)_NSE('alto') >  mu(ln_alns)_NSE('< que alto')**
 
-#### Una vez realizado el análisis de las varianzas por medio de la función t.test() y posteriormente analizando los 2 variables con la misma función se concluye lo siguiente:
+_Se están comparando dos grupos, por lo tanto se analizará la varianza de las dos muestras_
 
-```
-**Con niveles de confianza de 90%,95% y 99%, no existe evidencia estadística para rechazar Ho, por lo tanto podemos asumir que los hogares mexicanos que pertenecen a un NSE alto, en promedio, gastan más en alimentos NO saludables que los hogares que pertenecen a un NSE bajo, contrario a opinión pública**
-```
+## Conclusiones ⚙️
+
+#### Una vez realizado el análisis de las varianzas por medio de la función **t.test()** y posteriormente analizando los 2 variables con la misma función se concluye lo siguiente:
+
+#### **Con niveles de confianza de 90%,95% y 99%, no existe evidencia estadística para rechazar Ho, por lo tanto podemos asumir que los hogares mexicanos que pertenecen a un NSE alto, en promedio, gastan más en alimentos NO saludables que los hogares que pertenecen a un NSE bajo, contrario a opinión pública**
