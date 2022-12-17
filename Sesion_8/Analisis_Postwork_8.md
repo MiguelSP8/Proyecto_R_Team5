@@ -322,14 +322,14 @@ _Es útil para modelar la probabilidad de un evento ocurriendo en función de ot
 | numpeho | < 2e-16 | Si |
 | refinSi | < 2e-16 | Si |
 | edadjef | 0.35 | No |
-| sexojef | 0.35 | Si |
-| añosedu | 0.35 | Si |
-| ln_als | 0.35 | Si |
-| ln_alns | 0.35 | Si |
+| sexojef | 0.000299 | Si |
+| añosedu | < 2e-16 | Si |
+| ln_als | 0.001389 | Si |
+| ln_alns | 8.39e-09 | Si |
     
 Se quito la variable **edadjef** y se creó un nuevo modelo.
 
-**Conclusiones generales observadas en la regresión⚙️**
+**Conclusiones⚙️**
 
 * Considerando la interpretación de los coeficientes **odds**
 
