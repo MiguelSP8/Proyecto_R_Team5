@@ -82,15 +82,15 @@ Recordando:
 
 _En nuestro caso, desconocemos el dato preciso de las medidas de tendencia central y dispersión estadística de la población, usaremos la prueba **t.test()** para verificar si la media muestral para cada una de las 20 combinaciones posibles de las variables **IA, refin y nse5f** son representativas de la población._
 
-## Nuestros planteamientos son:
+## Nuestros planteamientos son: 🚀
 
-### * 1) Existe evidencia estadística para asumir que los hogares mexicanos que pertenecen a un nivel socioeconómico (NSE) alto, en promedio, gastan más en alimentos NO saludables que los hogares que pertenecen a un nivel socioeconómico (NSE) menor a Alto.
+### ⌨️ 1) Existe evidencia estadística para asumir que los hogares mexicanos que pertenecen a un nivel socioeconómico (NSE) alto, en promedio, gastan más en alimentos NO saludables que los hogares que pertenecen a un nivel socioeconómico (NSE) menor a Alto.
 
 **Previo a la demostración visualizamos las 2 variables de estudio por medio de boxplot**
 
 ![**Figura 4.1:** BoxPlot NSE Alto vs NSE < Alto](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_1_boxplot.PNG "Figura 4.1: BoxPlot NSE Alto vs NSE < Alto")
 
-#### Planteamiento de hipótesis:
+#### Planteamiento de hipótesis:📋
 
 * **Hipótesis nula, Ho: mu(ln_alns)_nse5f('alto') <=  mu(ln_alns)_nse5f('< que alto')**
 * **Hipótesis alternativa, Ha: mu(ln_alns)_NSE('alto') >  mu(ln_alns)_NSE('< que alto')**
@@ -101,17 +101,17 @@ _Se están comparando dos grupos, por lo tanto se analizará la varianza de las 
 
 #### Una vez realizado el análisis de las varianzas por medio de la función **t.test()** y posteriormente analizando los 2 variables con la misma función se concluye lo siguiente:
 
-#### **Con niveles de confianza de 90%,95% y 99%, no existe evidencia estadística para rechazar Ho, por lo tanto podemos asumir que los hogares mexicanos que pertenecen a un NSE alto, en promedio, gastan más en alimentos NO saludables que los hogares que pertenecen a un NSE bajo, contrario a la opinión pública.**
+#### **Con niveles de confianza de 90%,95% y 99%, existe evidencia estadística para rechazar Ho, por lo tanto podemos asumir que los hogares mexicanos que pertenecen a un NSE alto, en promedio, gastan más en alimentos NO saludables que los hogares que pertenecen a un NSE bajo, contrario a la opinión pública.**
 
 
 
-### * 2) Existe evidencia estadística para asumir que la razón entre el gasto destinado a ALNS y el gasto destinado a ALS en los hogares mexicanos que pertenecen a un NSE alto, en promedio, es mayor que los hogares que pertenecen a un NSE bajo
+### ⌨️ 2) Existe evidencia estadística para asumir que la razón entre el gasto destinado a ALNS y el gasto destinado a ALS en los hogares mexicanos que pertenecen a un NSE alto, en promedio, es mayor que los hogares que pertenecen a un NSE bajo
 
 **Previo a la demostración visualizamos las 2 variables de estudio por medio de boxplot**
 
 ![**Figura 4.2:** BoxPlot NSE Alto vs NSE < Alto, con base a la razón de ALNS/ALS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_2_boxplot.PNG "Figura 4.1: BoxPlot NSE Alto vs NSE < Alto, con base a la razón de ALNS/ALS ")
 
-#### Planteamiento de hipótesis:
+#### Planteamiento de hipótesis:📋
 
 * **Hipótesis nula, Ho: mu(rateNS)_NSE('alto') <=  mu(rateNS)_NSE('< que alto')**
 * **Hipótesis alternativa, Ha: mu(rateNS)_NSE('alto') >  mu(rateNS)_NSE('< que alto')**
@@ -122,6 +122,63 @@ _Se están comparando dos grupos, por lo tanto se analizará la varianza de las 
 
 #### Una vez realizado el análisis de las varianzas por medio de la función **t.test()** y posteriormente analizando los 2 variables con la misma función se concluye lo siguiente:
 
-#### **Con niveles de confianza de 90%,95% y 99%, no existe evidencia estadística para rechazar Ho, por lo tanto podemos asumir que la razón entre el gasto destinado a ALNS y el gasto destinado a ALS en los hogares mexicanos que pertenecen a un NSE alto, en promedio, es mayor que los hogares que pertenecen a un NSE bajo, contrario a la opinión pública.**
+#### **Con niveles de confianza de 90%,95% y 99%, existe evidencia estadística para rechazar Ho, por lo tanto podemos asumir que la razón entre el gasto destinado a ALNS y el gasto destinado a ALS en los hogares mexicanos que pertenecen a un NSE alto, en promedio, es mayor que los hogares que pertenecen a un NSE bajo, contrario a la opinión pública.**
 
+
+### ⌨️ 3) En promedio, los hogares que perciben ingresos extra gastan menos, en terminos relativos, en ALNS que los hogares que no perciben ingresos extra.
+
+**Previo a la demostración visualizamos las 2 variables de estudio por medio de boxplot**
+
+![**Figura 4.3:** BoxPlot Ingreso Extra en hogares con base a la razón de ALNS/ALS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_3_boxplot.PNG "Figura 4.3: BoxPlot Ingreso Extra en hogares con base a la razón de ALNS/ALS ")
+
+#### Planteamiento de hipótesis: 📋
+
+* **Hipótesis nula, Ho: mu(rateNS)_refin('Si') >=  mu(rateNS)_refin('No')**
+* **Hipótesis alternativa, Ha: mu(rateNS)_refin('Si') <  mu(rateNS)_refin('No')**
+
+_Se están comparando dos grupos, por lo tanto se analizará la varianza de las dos muestras._
+
+#### Conclusiones ⚙️
+
+#### Una vez realizado el análisis de las varianzas por medio de la función **t.test()** y posteriormente analizando los 2 variables con la misma función se concluye lo siguiente:
+
+#### **Con niveles de confianza de 90%,95% y 99%, existe evidencia estadística para rechazar Ho, por lo tanto podemos asumir que en promedio los hogares que perciben ingresos extra gastan menos, en terminos relativos, en ALNS que los hogares que no perciben ingresos extra, contrario a la opinión pública.**
+
+
+### ⌨️ 4) En promedio, los hogares que padecen insuficiencia alimentaria gastan menos, en terminos relativos, en ALNS que los hogares que no padecen insuficiencia alimentaria.
+
+**Previo a la demostración visualizamos las 2 variables de estudio por medio de boxplot**
+
+![**Figura 4.4:** BoxPlot Hogares con Insuficiencia Alimentaria de acuerdo a la razón de ALNS/ALS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_3_boxplot.PNG "Figura 4.4: BoxPlot Hogares con Insuficiencia Alimentaria de acuerdo a la razón de ALNS/ALS ")
+
+#### Planteamiento de hipótesis: 📋
+
+* **Hipótesis nula, Ho: mu(rateNS)_IA('Si') >=  mu(rateNS)_IA('No')**
+* **Hipótesis alternativa, Ha: mu(rateNS)_IA('Si') <  mu(rateNS)_IA('No')**
+
+_Se están comparando dos grupos, por lo tanto se analizará la varianza de las dos muestras._
+
+#### Conclusiones ⚙️
+
+#### Una vez realizado el análisis de las varianzas por medio de la función **t.test()** y posteriormente analizando los 2 variables con la misma función se concluye lo siguiente:
+
+#### **Con niveles de confianza de 90%,95% y 99%, existe evidencia estadística para rechazar Ho, por lo tanto podemos asumir que en promedio los hogares que padecen IA gastan menos, en terminos relativos, en ALNS que los hogares que no padecen IA, contrario a la opinión pública.**
+
+### ⌨️ 5) Existe evidencia estadística para concluir que, en promedio, el nivel socioeconómico tiene efectos sobre el la razón del ln del gasto en ALNS respecto al gasto en ALS.
+
+**Previo a la demostración visualizamos las 2 variables de estudio por medio de boxplot**
+
+![**Figura 4.5:** BoxPlot Nivel socioeconómico en Hogares de acuerdo a la razón de ALNS/ALS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_5_boxplot.PNG "Figura 4.5: BoxPlot Nivel socioeconómico en Hogares de acuerdo a la razón de ALNS/ALS")
+
+#### Planteamiento de hipótesis: 📋
+
+* **Ho: avg_rateNS_nse(alto) = avg_rateNS_nse(medio alto) = avg_rateNS_nse(medio) = avg_rateNS_nse(medio bajo) = avg_rateNS_nse(bajo)**
+* **Ha: Al menos uno es diferente.**
+
+
+#### Conclusiones ⚙️
+
+#### Una vez realizado el análisis por medio de la función **anova()**, por cuestiones de categorízación de la variables NSE, se concluye lo siguiente:
+
+#### **Con niveles de confianza de 90%,95% y 99%, existe evidencia estadística para rechazar Ho, por lo tanto podemos asumir que al menos uno de los promedios es diferente, esto implica que el nivel socioeconómico si tiene efecto sobre la razón entre el gasto en ALNS y ALS.**
 
