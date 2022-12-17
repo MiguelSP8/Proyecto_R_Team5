@@ -775,6 +775,388 @@ text(1.2, 2.0,paste("P(x>q)=",round(res,3)),col=3)
 4) Plantea hipótesis estadísticas y concluye sobre ellas para entender el problema en México
 
 "
+# Nos interesa analizar los patrones de gasto en alimentos saludables y no 
+# saludables en los hogares mexicanos con base en su nivel socioeconómico, 
+# en si el hogar tiene recursos financieros extras al ingreso y en si presenta 
+# o no inseguridad alimentaria.
+# 
+# Tenemos información de un extracto de la Encuesta Nacional de Salud y Nutrición (2012)
+# levantada por el Instituto Nacional de Salud Pública en México. Dicho lo anterior, 
+# nuestro trabajo es analizar la verasidad de las conclusiones que hemos encontrado
+# en nuestro analisis estadístico previo, con base en la información de esta muestra, en relación 
+# a la población.
+#
+# Recordando:
+# si n>=30 o conocemos varianza de población => Normal
+# si n<30 Y no conocemos varianza de población => t-student
+#
+# En nuestro caso, desconocemos el dato preciso de las medidas de tendencia
+# central y dispersión estadística de la población, usaremos la prueba t.test()
+# para verificar si la media muestral para cada una de las 20 combinaciones
+# posibles de las variables IA, refin y nse5f son representativas de la población.
+#
+# Nuestros planteamientos serían:
+#
+"
+1) Existe evidencia estadística para asumir que los hogares mexicanos que 
+pertenecen a un nivel socioeconómico (NSE) alto, en promedio, gastan más en alimentos NO saludables 
+que los hogares que pertenecen a un nivel socioeconómico (NSE) diferente?
+  "
+#Graficamente como se presentan las variables a analizar en la hipótesis
+library(ggplot2)
+#Creación de una variable más para identificar el nivel socioeconómico menor a Alto
+df <- data.frame(df %>% mutate(nse5f_analisis = ifelse(nse5f == "Alto", "Alto", "< que Alto")))
+ggplot(data = df) +
+  geom_boxplot(aes(x = nse5f_analisis, y = ln_alns, colour = nse5f_analisis)) +
+  labs(title = "Nivel socioeconómico en hogares con gasto en elimentos NO saludables",
+       x = "Nivel socioeconómico",
+       y = "Frecuencia") +
+  theme_classic()
+
+# Planteamiento de hipótesis:
+#
+# Hipótesis nula, Ho: mu(ln_alns)_nse5f('alto') <=  mu(ln_alns)_nse5f('< que alto')
+# Hipótesis alternativa, Ha: mu(ln_alns)_NSE('alto') >  mu(ln_alns)_NSE('< que alto')
+#
+# Se están comparando dos grupos, por lo tanto necesitamos analizar la varianza de las
+# dos muestras (inferencia sobre la media de dos poblaciones)
+#
+# Planteamiento de hipótesis intermedias
+#
+
+# Hipótesis nula, Ho: ratio=var1/var2=1 sean iguales
+# Hipótesis alternativa, Ha: ratio != 1 sean difentes
+res <- var.test(df[df$nse5f == "Alto", "ln_alns"],
+          df[df$nse5f != "Alto", "ln_alns"],
+          ratio = 1, alternative = "two.sided")
+pv <- res$p.value[1] #3.636145e-07
+# Comprobando pv contra la significancia 
+# NC del 90%
+if(pv < 0.1) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 90% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 90% no EEE para rechazar Ho")
+}
+# NC 95%
+if(pv < 0.05) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 95% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 95% no EEE para rechazar Ho")
+}
+# NC 99 %
+if(pv < 0.01) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 99% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 99% no EEE para rechazar Ho")
+}
+# A niveles de confianza estándar, existe evidencia estadística para rechazar Ho en favor de Ha
+# Es decir:
+# A niveles de confianza estándar, EEE para para rechazar que ratio=1, esto implica
+# que ratio != 1. Por consiguiente, var.equal = FALSE
+#
+# Ahora es momento de poner a prueba las hipótesis iniciales
+#
+res <- t.test(x = df[df$nse5f == "Alto", "ln_alns"], y = df[df$nse5f != "Alto", "ln_alns"],
+       alternative = "greater",
+       mu = 0, var.equal = FALSE)
+pv <- res$p.value[1]  # 1.381818e-244
+# Comprobando pv contra la significancia.
+# NC del 90%
+if(pv < 0.1) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 90% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 90% no EEE para rechazar Ho")
+}
+# NC 95%
+if(pv < 0.05) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 95% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 95% no EEE para rechazar Ho")
+}
+# NC 99 %
+if(pv < 0.01) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 99% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 99% no EEE para rechazar Ho")
+}
+# A niveles de confianza estándar, EEE para rechazar Ho en favor de Ha, esto es:
+# A niveles de confianza estándar, EEE para asumir que los hogares mexicanos que 
+# pertenecen a un NSE alto, en promedio, gastan más en alimentos NO saludables 
+# que los hogares que pertenecen a un NSE bajo, contrario a opinión pública
+
+
+"
+2) Existe evidencia estadística para asumir que la razón entre el gasto destinado a
+ALNS y el gasto destinado a ALS en los hogares mexicanos que pertenecen a un NSE alto, 
+en promedio, es mayor que los hogares que pertenecen a un NSE bajo?
+"
+#Graficamente como se presentan las variables a analizar en la hipótesis
+ggplot(data = df) +
+  geom_boxplot(aes(x = nse5f_analisis, y = rateNS, colour = nse5f_analisis)) +
+  labs(title = "Nivel socioeconómico en hogares con base a la razón de ALNS/ALS",
+       x = "Nivel socioeconómico",
+       y = "Frecuencia") +
+  theme_classic()
+
+# Planteamiento de hipótesis:
+#
+# Hipótesis nula, Ho: mu(rateNS)_NSE('alto') <=  mu(rateNS)_NSE('< que alto')
+# Hipótesis alternativa, Ha: mu(rateNS)_NSE('alto') >  mu(rateNS)_NSE('< que alto')
+#
+# Se están comparando dos grupos, primero necesitamos analizar la varianza de las
+# dos muestras (inferencia sobre la media de dos poblaciones)
+#
+# Planteamiento de hipótesis intermedias
+#
+# Hipótesis nula, Ho: ratio=var1/var2=1
+# Hipótesis alternativa, Ha: ratio != 1
+res <- var.test(df[df$nse5f_analisis == "Alto", "rateNS"],
+                df[df$nse5f_analisis != "Bajo", "rateNS"],
+                ratio = 1, alternative = "two.sided")
+pv <- res$p.value[1] # 0.005339243
+# NC del 90%
+if(pv < 0.1) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 90% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 90% no EEE para rechazar Ho")
+}
+# NC 95%
+if(pv < 0.05) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 95% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 95% no EEE para rechazar Ho")
+}
+# NC 99 %
+if(pv < 0.01) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 99% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 99% no EEE para rechazar Ho")
+}
+# A niveles de confianza estándar, existe evidencia estadística para rechazar Ho en favor de Ha
+# Es decir:
+# A niveles de confianza estándar, EEE para para rechazar que ratio=1, esto implica
+# que ratio != 1. Por consiguiente, var.equal = FALSE
+#
+# Ahora es momento de poner a prueba las hipótesis iniciales
+#
+res <- t.test(x = df[df$nse5f == "Alto", "rateNS"], y = df[df$nse5f != "Bajo", "rateNS"],
+              alternative = "greater",
+              mu = 0, var.equal = FALSE)
+pv <- res$p.value[1] #1.070836e-31
+# NC del 90%
+if(pv < 0.1) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 90% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 90% no EEE para rechazar Ho")
+}
+# NC 95%
+if(pv < 0.05) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 95% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 95% no EEE para rechazar Ho")
+}
+# NC 99 %
+if(pv < 0.01) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 99% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 99% no EEE para rechazar Ho")
+}
+# A niveles de confianza estándar, EEE para rechazar Ho en favor de Ha, esto es:
+# A niveles de confianza estándar, EEE para asumir que la razón entre el gasto destinado a
+# ALNS y el gasto destinado a ALS en los hogares mexicanos que pertenecen a un NSE alto, 
+# en promedio, es mayor que los hogares que pertenecen a un NSE bajo
+"
+3) En promedio, los hogares que perciben ingresos extra gastan menos,
+en terminos relativos, en ALNS que los hogares que no perciben
+ingresos extra.
+"
+#Graficamente como se presentan las variables a analizar en la hipótesis
+ggplot(data = df) +
+  geom_boxplot(aes(x = refin, y = rateNS, colour = refin)) +
+  labs(title = "Ingreso Extra en hogares con base a la razón de ALNS/ALS",
+       x = "Ingreso Extra",
+       y = "Frecuencia") +
+  theme_classic()
+# Planteamiento de hipótesis:
+#
+# Hipótesis nula, Ho: mu(rateNS)_refin('Si') >=  mu(rateNS)_refin('No')
+# Hipótesis alternativa, Ha: mu(rateNS)_refin('Si') <  mu(rateNS)_refin('No')
+#
+# Se están comparando dos grupos, primero necesitamos analizar la varianza de las
+# dos muestras (inferencia sobre la media de dos poblaciones)
+#
+# Planteamiento de hipótesis intermedias
+#
+# Hipótesis nula, Ho: ratio=var1/var2=1
+# Hipótesis alternativa, Ha: ratio != 1
+res <- var.test(df[df$refin == "Si", "rateNS"],
+                df[df$refin == "No", "rateNS"],
+                ratio = 1, alternative = "two.sided")
+pv <- res$p.value[1] # 0.0001289455
+# NC del 90%
+if(pv < 0.1) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 90% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 90% no EEE para rechazar Ho")
+}
+# NC 95%
+if(pv < 0.05) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 95% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 95% no EEE para rechazar Ho")
+}
+# NC 99 %
+if(pv < 0.01) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 99% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 99% no EEE para rechazar Ho")
+}
+# A niveles de confianza estándar, existe evidencia estadística para rechazar Ho en favor de Ha
+# Es decir:
+# A niveles de confianza estándar, EEE para para rechazar que ratio=1, esto implica
+# que ratio != 1. Por consiguiente, var.equal = FALSE
+#
+# Ahora es momento de poner a prueba las hipótesis iniciales
+#
+res <- t.test(x = df[df$refin == "Si", "rateNS"], y = df[df$refin == "No", "rateNS"],
+              alternative = "less",
+              mu = 0, var.equal = FALSE)
+pv <- res$p.value[1]  #0.000162292
+# NC del 90%
+if(pv < 0.1) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 90% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 90% no EEE para rechazar Ho")
+}
+# NC 95%
+if(pv < 0.05) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 95% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 95% no EEE para rechazar Ho")
+}
+# NC 99 %
+if(pv < 0.01) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 99% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 99% no EEE para rechazar Ho")
+}
+# A niveles de confianza estándar, EEE para rechazar Ho en favor de Ha, esto es:
+# A niveles de confianza estándar, EEE para asumir que en promedio los hogares 
+# que perciben ingresos extra gastan menos, en terminos relativos, en ALNS que 
+# los hogares que no perciben ingresos extra
+
+"
+4) En promedio, los hogares que padecen insuficiencia alimentaria gastan menos,
+en terminos relativos, en ALNS que los hogares que no padecen insuficiencia
+alimentaria
+"
+
+#Graficamente como se presentan las variables a analizar en la hipótesis
+ggplot(data = df) +
+  geom_boxplot(aes(x = IA, y = rateNS, colour = IA)) +
+  labs(title = "Hogares con Insuficiencia Alimentaria de acuerdo a la razón de ALNS/ALS",
+       x = "Insuficiencia Alimentaria",
+       y = "Frecuencia") +
+  theme_classic()
+
+# Planteamiento de hipótesis:
+#
+# Hipótesis nula, Ho: mu(rateNS)_IA('Si') >=  mu(rateNS)_IA('No')
+# Hipótesis alternativa, Ha: mu(rateNS)_IA('Si') <  mu(rateNS)_IA('No')
+#
+# Se están comparando dos grupos, primero necesitamos analizar la varianza de las
+# dos muestras (inferencia sobre la media de dos poblaciones)
+#
+# Planteamiento de hipótesis intermedias
+#
+# Hipótesis nula, Ho: ratio=var1/var2=1
+# Hipótesis alternativa, Ha: ratio != 1
+res <- var.test(df[df$IA == "Si", "rateNS"],
+                df[df$IA == "No", "rateNS"],
+                ratio = 1, alternative = "two.sided")
+pv <- res$p.value[1] # 1.496197e-11
+# NC del 90% # 
+if(pv < 0.1) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 90% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 90% no EEE para rechazar Ho")
+}
+# NC 95%
+if(pv < 0.05) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 95% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 95% no EEE para rechazar Ho")
+}
+# NC 99 %
+if(pv < 0.01) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 99% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 99% no EEE para rechazar Ho")
+}
+# A niveles de confianza estándar, existe evidencia estadística para rechazar Ho en favor de Ha
+# Es decir:
+# A niveles de confianza estándar, EEE para para rechazar que ratio=1, esto implica
+# que ratio != 1. Por consiguiente, var.equal = FALSE
+#
+# Ahora es momento de poner a prueba las hipótesis iniciales
+#
+res <- t.test(x = df[df$IA == "Si", "rateNS"], y = df[df$IA == "No", "rateNS"],
+              alternative = "less",
+              mu = 0, var.equal = FALSE)
+pv <- res$p.value[1] # 6.045403e-33
+# NC del 90%
+if(pv < 0.1) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 90% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 90% no EEE para rechazar Ho")
+}
+# NC 95%
+if(pv < 0.05) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 95% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 95% no EEE para rechazar Ho")
+}
+# NC 99 %
+if(pv < 0.01) {
+  paste("Con un pvalue=",pv," a niveles de confianza del 99% EEE para rechazar Ho en favor de Ha")
+} else {
+  paste("Con un pvalue=",pv," a  niveles de confianza del 99% no EEE para rechazar Ho")
+}
+# A niveles de confianza estándar, EEE para rechazar Ho en favor de Ha, esto es:
+# A niveles de confianza estándar, EEE para asumir que en promedio los hogares 
+# que padecen IA gastan menos, en terminos relativos, en ALNS que 
+# los hogares que no padecen IA
+
+"
+5) ¿Existe evidencia estadística para concluir que, en promedio, el nivel
+socioeconómico tiene efectos sobre el la razón del ln del gasto en ALNS respecto
+al gasto en ALS?
+"
+#Graficamente como se presentan las variables a analizar en la hipótesis
+ggplot(data = df) +
+  geom_boxplot(aes(x = nse5f, y = rateNS, colour = nse5f)) +
+  labs(title = "Nivel socioeconómico en Hogares de acuerdo a la razón de ALNS/ALS",
+       x = "Nivel socioeconómico",
+       y = "Frecuencia") +
+  theme_classic()
+
+# Planteamiento de hipótesis:
+# Ho: avg_rateNS_nse(alto) = avg_rateNS_nse(medio alto) = avg_rateNS_nse(medio) = avg_rateNS_nse(medio bajo) = avg_rateNS_nse(bajo)
+# Ha: Al menos uno es diferente.
+
+anova <- aov(rateNS ~ nse5f,
+             data = df)
+
+summary(anova)  # <2e-16 ***
+#
+# pvalue < 2e-16
+# A niveles de confianza del 90%, 95% y 99 %, la significancia alpha=0.1,0.05,0.01
+# se cumple que pvalue < alpha
+# Por tanto, a niveles de confianza estándar EEE para rechazar Ho en favor de la Ha
+# Es decir, a niveles de confianza estándar EEE de que al menos uno de los 
+# promedios es diferente. Esto implica que el nivel socioeconómico si tiene efecto
+# sobre la razón entre el gasto en ALNS y ALS.
+
 
 "
 5) Estima un modelo de regresión, lineal o logístico, para identificar los determinantes de la inseguridad alimentaria en México
