@@ -331,7 +331,7 @@ Se quito la variable **edadjef** y se creó un nuevo modelo.
 
 **Conclusiones generales observadas en la regresión⚙️**
 
-* Considerando la interpretación de los coefficientes **odds**
+* Considerando la interpretación de los coeficientes **odds**
 
 1. La probabilidad de padecer insuficiencia alimentaria es menor conforme aumenta el nivel socioeconómico del hogar, en comparación con la probabilidad de padecer insuficiencia alimentaria para un hogar con un nivel socioeconómico bajo.
 
@@ -343,5 +343,5 @@ Se quito la variable **edadjef** y se creó un nuevo modelo.
 
 5. Los años de educación del jefe del hogar disminuyen la probabilidad de padecer insuficiencia alimentaria.
 
-6. El aumento en el gasto par ala adquisición de alimnetos, tanto saludables como no saludables, disminuye el riesgo de padecer insuficiencia alimentaria.
+6. El aumento en el gasto para la adquisición de alimnetos, tanto saludables como no saludables, disminuye el riesgo de padecer insuficiencia alimentaria.
 
