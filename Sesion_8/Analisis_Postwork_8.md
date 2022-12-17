@@ -84,7 +84,7 @@ _En nuestro caso, desconocemos el dato preciso de las medidas de tendencia centr
 
 ## Nuestros planteamientos son:
 
-### 1) Existe evidencia estadística para asumir que los hogares mexicanos que pertenecen a un nivel socioeconómico (NSE) alto, en promedio, gastan más en alimentos NO saludables que los hogares que pertenecen a un nivel socioeconómico (NSE) menor a Alto.
+### * 1) Existe evidencia estadística para asumir que los hogares mexicanos que pertenecen a un nivel socioeconómico (NSE) alto, en promedio, gastan más en alimentos NO saludables que los hogares que pertenecen a un nivel socioeconómico (NSE) menor a Alto.
 
 **Previo a la demostración visualizamos las 2 variables de estudio por medio de boxplot**
 
@@ -97,7 +97,7 @@ _En nuestro caso, desconocemos el dato preciso de las medidas de tendencia centr
 
 _Se están comparando dos grupos, por lo tanto se analizará la varianza de las dos muestras._
 
-## Conclusiones ⚙️
+#### Conclusiones ⚙️
 
 #### Una vez realizado el análisis de las varianzas por medio de la función **t.test()** y posteriormente analizando los 2 variables con la misma función se concluye lo siguiente:
 
@@ -105,7 +105,7 @@ _Se están comparando dos grupos, por lo tanto se analizará la varianza de las 
 
 
 
-### 2) Existe evidencia estadística para asumir que la razón entre el gasto destinado a ALNS y el gasto destinado a ALS en los hogares mexicanos que pertenecen a un NSE alto, en promedio, es mayor que los hogares que pertenecen a un NSE bajo
+### * 2) Existe evidencia estadística para asumir que la razón entre el gasto destinado a ALNS y el gasto destinado a ALS en los hogares mexicanos que pertenecen a un NSE alto, en promedio, es mayor que los hogares que pertenecen a un NSE bajo
 
 **Previo a la demostración visualizamos las 2 variables de estudio por medio de boxplot**
 
@@ -118,7 +118,7 @@ _Se están comparando dos grupos, por lo tanto se analizará la varianza de las 
 
 _Se están comparando dos grupos, por lo tanto se analizará la varianza de las dos muestras._
 
-## Conclusiones ⚙️
+#### Conclusiones ⚙️
 
 #### Una vez realizado el análisis de las varianzas por medio de la función **t.test()** y posteriormente analizando los 2 variables con la misma función se concluye lo siguiente:
 
