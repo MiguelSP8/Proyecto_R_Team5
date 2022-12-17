@@ -164,7 +164,7 @@ _Se están comparando dos grupos, por lo tanto se analizará la varianza de las 
 
 #### **Con niveles de confianza de 90%,95% y 99%, existe evidencia estadística para rechazar Ho, por lo tanto podemos asumir que en promedio los hogares que padecen IA gastan menos, en terminos relativos, en ALNS que los hogares que no padecen IA, contrario a la opinión pública.**
 
-### ⌨️ 5) Existe evidencia estadística para concluir que, en promedio, el nivel socioeconómico tiene efectos sobre el la razón del ln del gasto en ALNS respecto al gasto en ALS.
+### ⌨️ 5) Existe evidencia estadística para concluir que, en promedio, el nivel socioeconómico tiene efectos sobre la razón del gasto en razón ALNS respecto al gasto en ALS.
 
 **Previo a la demostración visualizamos las 2 variables de estudio por medio de boxplot**
 
