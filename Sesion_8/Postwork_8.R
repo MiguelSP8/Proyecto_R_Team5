@@ -13,7 +13,7 @@ inseguridad alimentaria.
 
 La base de datos contiene las siguientes variables:
   
-  nse5f (Nivel socioeconómico del hogar): 1 "Bajo", 2 "Medio bajo", 3 "Medio", 4 "Medio alto", 5 "Alto"
+nse5f (Nivel socioeconómico del hogar): 1 "Bajo", 2 "Medio bajo", 3 "Medio", 4 "Medio alto", 5 "Alto"
 area (Zona geográfica): 0 "Zona urbana", 1 "Zona rural"
 numpeho (Número de persona en el hogar)
 refin (Recursos financieros distintos al ingreso laboral): 0 "no", 1 "sí"
@@ -678,14 +678,107 @@ df.estf%>%arrange(desc(nse5f),rateNS)
 # los que no.
 "
 3) Calcula probabilidades que nos permitan entender el problema en México
+
 "
+# Para el cálculo de las probabilidades, vamos a trabajar con la razón entre el gasto en ALNS y ALS
+
+# 1) ¿Cuál es la probabilidad de que los hogares que no reciben ingresos extra 
+# destinen relativamente más recursos al consumo de ALNS, que el promedio de 
+#los hogares que sí perciben ingresos extra?
+
+mean.si <- df.vis.ref%>%filter(refin=="Si")%>%select(avg_rate)
+mean.si
+mean.no <- df.vis.ref%>%filter(refin=="No")%>%select(avg_rate)
+mean.no
+sd.no <- df.vis.ref%>%filter(refin=="No")%>%select(sd_rate)
+sd.no
+q<-as.double(mean.si)
+mean <- as.double(mean.no)
+sd <- as.double(sd.no)
+res <-  pnorm(q=q, mean = mean, sd = sd,lower.tail = FALSE, log.p = FALSE)
+print(paste("Hay una probabilidad del",round(res,3)," de que un hogar que no percibe ingresos extra gaste más en ALNS que el promedio del gasto de un hogar que sí percibe ingresos extra"))
+
+# Gráficamente
+x <- seq(-4, 4, 0.01)*sd + mean
+y <- dnorm(x, mean = mean, sd = sd) 
+b <- q
+b2 <- mean+5*sd
+curve(dnorm(x, mean = mean, sd = sd), from = mean-5*sd, to = mean+5*sd, 
+      col='blue', main = "Densidad de Probabilidad Normal: rateNS",
+      ylab = "f(x)", xlab = "X",sub="P(rateNS no ingresos extra > avg rateNS ingresos extra)")
+polygon(c(b, x[x>=b & x<=b2], b2), c(0, y[x>=b & x<=b2], 0), col="green")
+text(0.25*q, 2.0,paste("q=",round(q,4)),col=2)
+text(0.25*q, 1.8,paste("mu=",round(mean,4)),col=2)
+text(1.2, 2.0,paste("P(x>q)=",round(res,3)),col=3)
+
+# 2) ¿Cuál es la probabilidad de que los hogares que padecen IA relativamente,
+# destinen más recursos al consumo de ALNS, que el promedio de los hogares que no
+# padecen IA?
+
+mean.si <- df.vis.ia%>%filter(IA=="Si")%>%select(avg_rate)
+mean.si
+sd.si <- df.vis.ia%>%filter(IA=="Si")%>%select(sd_rate)
+sd.si
+mean.no <- df.vis.ia%>%filter(IA=="No")%>%select(avg_rate)
+mean.no
+
+q<-as.double(mean.no)
+mean <- as.double(mean.si)
+sd <- as.double(sd.si)
+res <-  pnorm(q=q, mean = mean, sd = sd,lower.tail = FALSE, log.p = FALSE)
+print(paste("Hay una probabilidad del",round(res,3)," de que un hogar que padece IA gaste relativamente más en ALNS que el promedio del gasto relativo de un hogar que no padece IA"))
+
+# Gráficamente
+x <- seq(-4, 4, 0.01)*sd + mean
+y <- dnorm(x, mean = mean, sd = sd) 
+b <- q
+b2 <- mean+5*sd
+curve(dnorm(x, mean = mean, sd = sd), from = mean-5*sd, to = mean+5*sd, 
+      col='blue', main = "Densidad de Probabilidad Normal: rateNS",
+      ylab = "f(x)", xlab = "X",sub="P(rateNS si IA > avg rateNS no IA)")
+polygon(c(b, x[x>=b & x<=b2], b2), c(0, y[x>=b & x<=b2], 0), col="green")
+text(0.25*q, 1.8,paste("q=",round(q,4)))
+text(0.25*q, 2.0,paste("mu=",round(mean,4)))
+text(1.2, 2.0,paste("P(x>q)=",round(res,3)),col=3)
+
+# 3) ¿Cuál es la probabilidad de que los hogares que pertenecen a un NSE Bajo
+# destinen más recursos al consumo de ALNS, que el promedio de los hogares que
+# pertenecen a un NSE Alto?
+
+mean.bajo <- df.vis.nse%>%filter(nse5f=="Bajo")%>%select(avg_rate)
+mean.bajo
+sd.bajo <- df.vis.nse%>%filter(nse5f=="Bajo")%>%select(sd_rate)
+sd.bajo
+mean.alto <- df.vis.nse%>%filter(nse5f=="Alto")%>%select(avg_rate)
+mean.alto
+
+q<-as.double(mean.alto)
+mean <- as.double(mean.bajo)
+sd <- as.double(sd.bajo)
+res <-  pnorm(q=q, mean = mean, sd = sd,lower.tail = FALSE, log.p = FALSE)
+print(paste("Hay una probabilidad del",round(res,3)," de que un hogar que pertenece al NSE Bajo gaste relativamente más en ALNS que el promedio del gasto relativo de un hogar que pertenence a un NSE Alto"))
+
+# Gráficamente
+x <- seq(-4, 4, 0.01)*sd + mean
+y <- dnorm(x, mean = mean, sd = sd) 
+b <- q
+b2 <- mean+5*sd
+curve(dnorm(x, mean = mean, sd = sd), from = mean-5*sd, to = mean+5*sd, 
+      col='blue', main = "Densidad de Probabilidad Normal: rateNS",
+      ylab = "f(x)", xlab = "X",sub="P(rateNS NSE Bajo > avg rateNS NSE Alto)")
+polygon(c(b, x[x>=b & x<=b2], b2), c(0, y[x>=b & x<=b2], 0), col="green")
+text(0.25*q, 1.8,paste("q=",round(q,4)))
+text(0.25*q, 2.0,paste("mu=",round(mean,4)))
+text(1.2, 2.0,paste("P(x>q)=",round(res,3)),col=3)
 
 "
 4) Plantea hipótesis estadísticas y concluye sobre ellas para entender el problema en México
+
 "
 
 "
 5) Estima un modelo de regresión, lineal o logístico, para identificar los determinantes de la inseguridad alimentaria en México
+
 "
 
 #
@@ -796,7 +889,9 @@ exp(coef(logistic.2))# quitamos logaritmo
 # Con el incremento unitario en el "ln_als", la probabilidad de padecer IA es 0.906 veces
 # la probabilidad sin el aumento
 #
+
 "
 6) Escribe tu análisis en un archivo README.MD y tu código en un script de R y publica ambos en un repositorio de Github.
+
 "
 # Ver directorio Sesion_8 en reositorio: https://github.com/MiguelSP8/Proyecto_R_Team5.git
