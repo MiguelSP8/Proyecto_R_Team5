@@ -297,22 +297,97 @@ _Es útil para modelar la probabilidad de un evento ocurriendo en función de ot
 
 **Análisis: 📋**
 
-Análisis de correlaciones entre variables numericas
+1.- Dentro del análisis de correlaciones entre variables numericas, se determinó que no hay evidencia de correlación entre las variables numéricas que describen el problema.
 
-_A partir de la matriz de correlación como del análisis visual, No hay evidencia de correlación entre las variables numéricas que describen el problema_
+2.- De acuerdo al modelo de regresión logística y utilizando todas las variables disponibles se plantea lo siguiente: 
 
-**Planteamiento de hipótesis: 📋**
+![**Figura 5.1:** Modelo de regresión logística utilizando todas las variables](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_5_boxplot.PNG "Figura 5.1: Modelo de regresión logística utilizando todas las variables")
 
-* H_0: Bi = 0
-* H_a : Bi != 0
-
-**Información obtenida: 📋**
-
-**Observaciones**
-Tabla de observaciones
+**Figura 5.1:** Modelo de regresión logística utilizando todas las variables
 
 
-**Conclusiones Generales observadas en la regresión⚙️**
+    * Planteamiento de hipótesis: 📋*
+        * H_0: Bi = 0
+        * H_a : Bi != 0
+
+**Observaciones: 📋**
+
+| Variables | odds |  p-value | Rechaza
+| --- | --- | --- | --- |
+| B0 | - | 2x10^-16 | Si
+
+    * Para el intercepto B0, pvalue < 2x10^-16< alpha=0.05 => a niveles de confianza del 95% se rechaza la hipotesis nula, es decir, B0 != 0.
+
+    * Para B1, pvalue=1.97x10^-6, para B2,B3 y B4, pvalue < 2x10^-16, para todos se cumple que pvalue < alpha=0.05  => A niveles de
+      confianza del 95% se rechaza la hipotesis nula, es decir B1,B2,B3 y B4 != 0. "nse5f"  es un buen estadístico para el modelo.
+
+    * Para B5, pvalue = 0.030585 < alpha=0.05 =>  A niveles de confianza del 95% se rechaza la hipotesis nula
+      es decir, B5 != 0 => "area" es un buen estadístico para el modelo.
+
+    * Para B6, pvalue < 2e-16 < alpha=0.05 => A niveles de confianza del 95% se rechaza la hipotesis nula
+      es decir, B6 != 0, "numpeho" es un buen estadístico para el modelo.
+
+    * Para B7, pvalue < 2e-16 < alpha=0.05 => A niveles de confianza del 95% se rechaza la hipotesis nula
+      es decir, B7 != 0, "refin" es un buen estadístico para el modelo.
+
+    * Para B8, pvalue = 0.35 > alpha=0.05 =>  A niveles de confianza del 95% no se rechaza la hipotesis nula
+      es decir, B8 = 0 => "edadjef" NO es un buen estadístico para el modelo.
+
+    * Para B9, pvalue = 0.000299 < alpha=0.05 => A niveles de confianza del 95% se rechaza la hipotesis nula
+      es decir, B9 != 0, "sexojef" es un buen estadístico para el modelo
+
+    * Para B10, pvalue < 2x10^-16< alpha=0.05 => A niveles de confianza del 95% se rechaza la hipotesis nula
+      es decir, B9 != 0 => "añosedu" es un buen estadístico para el modelo
+
+    * Para B11, pvalue = 0.001389 < alpha=0.05 => A niveles de confianza del 95% se rechaza la hipotesis nula
+      es decir, B11 != 0, "ln_als" es un buen estadístico para el modelo
+
+    * Para B12, pvalue = 8.39e-09 < alpha=0.05 => A niveles de confianza del 95% se rechaza la hipotesis nula
+      es decir, B12 != 0, "ln_alns" es un buen estadístico para el modelo
+
+Se quito la variable **edadjef** y se creó un nuevo modelo.
+
+**Conclusiones**
+
+| Variables | mómios |  p-value 
+| --- | --- | --- | --- |
+| B0 | - | 2x10^-16 | Si
+
+    * La probabilidad de padecer IA para un hogar con NSE5F "Medio bajo" es 0.7372 la 
+      probabilidad de padecer IA para un hogar con NSE5F "bajo". 
+
+    * La probabilidad de padecer IA para un hogar con NSE5F "Medio" es 0.5893 la probabilidad 
+      de padecer IA para un hogar con NSE5F "bajo".
+
+    * La probabilidad de padecer IA para un hogar con NSE5F "Medio alto" es 0.4087 la 
+      probabilidad de padecer IA para un hogar con NSE5F "bajo" .
+
+    * La probabilidad de padecer IA para un hogar con NSE5F "Alto" es 0.2269 la probabilidad
+      de padecer IA para un hogar con NSE5F "bajo" .
+
+    * La probabilidad de padecer IA en una zona rural es 0.9156 la probabilidad de 
+      padecer IA en una zona urbana.
+
+    * Con el incremento unitario en el número de personas que habitan el hogar, "numpeho",
+      la probabilidad de padecer IA es 1.1914  veces la probabilidad sin dicho aumento
+
+    * La probabilidad de padecer IA para un hogar con ingresos extra (refin=Si) es 1.483
+      la probabilidad de padecer IA para un hogar sin ingresos extra (refin=No) 
+
+    * La probabilidad de padecer IA para un hogar con jefe de familia mujer es 1.1630 la 
+      probabilidad de padecer IA para un hogar con jefe de familia hombre
+
+    * Con el incremento unitario en el número de años de educación, "años edu", 
+      la probabilidad de padecer IA es 0.9485 veces la probabilidad sin el aumento
+
+    * Con el incremento unitario en el "ln_als", la probabilidad de padecer IA es 0.912 veces
+      la probabilidad sin el aumento
+
+    * Con el incremento unitario en el "ln_als", la probabilidad de padecer IA es 0.906 veces
+      la probabilidad sin el aumento
+
+
+**Conclusiones generales observadas en la regresión⚙️**
 
 1. La probabilidad de padecer insuficiencia alimentaria es menor conforme aumenta el nivel socioeconómico del hogar, en comparación con la probabilidad de padecer insuficiencia alimentaria para un hogar con un nivel socioeconómico bajo.
 
