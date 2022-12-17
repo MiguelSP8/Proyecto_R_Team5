@@ -283,7 +283,7 @@ Una vez realizado el análisis por medio de la función **aov(anova)**, por cues
 Con niveles de confianza de 90%,95% y 99%, existe evidencia estadística para rechazar Ho, por lo tanto podemos asumir que al menos uno de los promedios es diferente, esto implica que el nivel socioeconómico si tiene efecto sobre la razón entre el gasto en ALNS y ALS.
 
 
-## Modelo de regresión logística
+## 4) Modelo de regresión logística
 
 Se quiere estimar la probabilidad de que un hogar presente inseguridad alimentaria o no
 
