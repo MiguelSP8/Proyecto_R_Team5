@@ -136,6 +136,7 @@ Dado las observaciones que se realizaron en el análisis exploratorio descriptiv
 los hogares que SI perciben ingresos extra?
 
 ![**Figura 2.1:** Gráfica de densidad de probabilidad NIE vs SIE](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/grafica_E1.png "Figura 2.1: Gráfica de densidad de probabilidad NIE vs SIE")
+
 **Figura 2.1:** Gráfica de densidad de probabilidad NO ingresos extra > SI ingresos extra.
 En esta gráfica observamos una distribución de probabilidad de tipo LEPTOCURTICA, con un promedio de 0.6714 y un quantil de 0.6604, de tipo cola superior.
 
@@ -149,6 +150,7 @@ del gasto de un hogar, que SI percibe ingresos extra.
 padecen IA?
 
 ![**Figura 2.2:** Gráfica de densidad de probabilidad si IA vs no IA](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/grafica_E2.png "Figura 2.2: Gráfica de densidad de probabilidad si IA vs no IA")
+
 **Figura 2.2:** Gráfica de densidad de probabilidad SI inseguridad alimentaria > NO inseguridad alimentaria.
 En esta gráfica observamos una distribución de probabilidad de tipo LEPTOCURTICA, con un promedio de 0.6596 y un quantil de 0.6933, de tipo cola superior.
 
@@ -161,6 +163,7 @@ Existe una probabilidad del **0.423** de que un hogar que padece IA, gaste relat
 pertenecen a un NSE Alto?
 
 ![**Figura 2.3:** Gráfica de densidad de probabilidad NSE Bajo vs NSE Alto](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/grafica_E3.png "Figura 2.3: Gráfica de densidad de probabilidad NSE Bajo vs NSE Alto")
+
 **Figura 2.3:** Gráfica de densidad de probabilidad NSE Bajo > NSE Alto.
 En esta gráfica observamos una distribución de probabilidad de tipo LEPTOCURTICA, con un promedio de 0.6447 y un quantil de 0.7089, de tipo cola superior.
 
