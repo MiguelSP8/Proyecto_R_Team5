@@ -301,7 +301,7 @@ _Es útil para modelar la probabilidad de un evento ocurriendo en función de ot
 
 2.- De acuerdo al modelo de regresión logística y utilizando todas las variables disponibles se plantea lo siguiente: 
 
-![**Figura 5.1:** Modelo de regresión logística utilizando todas las variables](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_5_boxplot.PNG "Figura 5.1: Modelo de regresión logística utilizando todas las variables")
+![**Figura 5.1:** Modelo de regresión logística utilizando todas las variables](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/5.1_boxplot.PNG "Figura 5.1: Modelo de regresión logística utilizando todas las variables")
 
 **Figura 5.1:** Modelo de regresión logística utilizando todas las variables
 
