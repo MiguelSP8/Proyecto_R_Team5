@@ -1,5 +1,5 @@
 # Código fuente en R para obtener los resultados 🛠️
-* [Código fuente en R](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/Postwork_8.R) - Código fuente en R
+* [Código fuente en R Postwork 8](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/Postwork_8.R)
 
 # Autores ✒️
 
