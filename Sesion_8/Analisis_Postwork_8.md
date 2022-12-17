@@ -160,42 +160,46 @@ Como podemos observar, hay una probabilidad del 0.368 de que un hogar que perten
 de un hogar que pertenece a un NSE Alto.
 
 
-# Planteamiento de  hipótesis estadísticas para entender el problema en México.
+## Planteamiento de  hipótesis estadísticas para entender el problema en México.
 
 En este apartado se analizará la veracidad de las conclusiones que hemos encontrado en nuestro analisis estadístico previo, con base en la información de la muestra, en relación a la población.
 
-Nos interesa analizar los patrones de gasto en alimentos saludables y no saludables en los hogares mexicanos con base a:
-```
+Nos interesa generar hipótesis sobre los patrones de gasto en alimentos saludables y no saludables en los hogares mexicanos con base a:
+
 * Su nivel socioeconómico, 
 * Si el hogar tiene recursos financieros extras al ingreso 
 * Si presenta o no inseguridad alimentaria.
-```
+
+Por último se verificará la hipótesis sobre si el nivel socioeconómico tiene efectos sobre la razón del gasto en razón ALNS respecto al gasto en ALS
+
 Recordando:
-* si muestra>=30 o conocemos varianza de población => Normal
-* si muestra<30 Y no conocemos varianza de población => t-student
 
-_En nuestro caso, desconocemos el dato preciso de las medidas de tendencia central y dispersión estadística de la población, usaremos la prueba **t.test()** para verificar si la media muestral para cada una de las 20 combinaciones posibles de las variables **IA, refin y nse5f** son representativas de la población._
+_Para la comprobación de las hipotesis usaremos la prueba **t.test()** para verificar si la media muestral para cada una de las variables **IA, refin y nse5f** son representativas de la población. La distribución **t de Student** tiene características similares a la distribución normal estándar, salvo que tiene un único parámetro (grados de libertad) y es utilizada preferentemente en lugar de la distribución Z, ya que a medida que el tamaño de la muestra es más grande, su densidad se acerca a la de la distribución normal estándar.
 
-## Nuestros planteamientos son: 🚀
+Adicionalmente para comprobar que los observaciones categorícas de la variables NSE (**nse5f**) impacta en el promedio de gasto de alimentos no saludables utilizaremos la función **aov(anova)** la cuál nos permite comparar la media de una variable considerando dos o más niveles/grupos de factor. Entre muchas otras aplicaciones de la **ANOVA**, esta técnica puede emplearse como una extensión de la prueba t de Student._
 
-### ⌨️ 1) Existe evidencia estadística para asumir que los hogares mexicanos que pertenecen a un nivel socioeconómico (NSE) alto, en promedio, gastan más en alimentos NO saludables que los hogares que pertenecen a un nivel socioeconómico (NSE) menor a Alto.
+### Nuestros planteamientos son: 🚀
 
-**Previo a la demostración visualizamos las 2 variables de estudio por medio de boxplot**
+**1) Existe evidencia estadística para asumir que los hogares mexicanos que pertenecen a un nivel socioeconómico (NSE) alto, en promedio, gastan más en alimentos NO saludables que los hogares que pertenecen a un nivel socioeconómico (NSE) menor a Alto.**
 
-![**Figura 4.1:** BoxPlot NSE Alto vs NSE < Alto](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_1_boxplot.PNG "Figura 4.1: BoxPlot NSE Alto vs NSE < Alto")
+Previo a la demostración, visualizamos las 2 variables de estudio por medio de boxplot.
 
-#### Planteamiento de hipótesis:📋
+![**Figura 4.1:** Boxplot Nivel Socioeconómico (NSE)  Alto y NSE (< Alto)](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_1_boxplot.PNG "Figura 4.1: Boxplot Nivel Socioeconómico (NSE)  Alto y NSE (< Alto)")
 
-* **Hipótesis nula, Ho: mu(ln_alns)_nse5f('alto') <=  mu(ln_alns)_nse5f('< que alto')**
-* **Hipótesis alternativa, Ha: mu(ln_alns)_NSE('alto') >  mu(ln_alns)_NSE('< que alto')**
+**Figura 4.1:** Boxplot Nivel Socioeconómico (NSE)  Alto y NSE (< Alto).
+
+**Planteamiento de hipótesis:📋**
+
+* Hipótesis nula, Ho: mu(ln_alns)_nse5f('alto') <=  mu(ln_alns)_nse5f('< que alto')
+* Hipótesis alternativa, Ha: mu(ln_alns)_NSE('alto') >  mu(ln_alns)_NSE('< que alto')
 
 _Se están comparando dos grupos, por lo tanto se analizará la varianza de las dos muestras._
 
-#### Conclusiones ⚙️
+** Conclusiones ⚙️**
 
-#### Una vez realizado el análisis de las varianzas por medio de la función **t.test()** y posteriormente analizando los 2 variables con la misma función se concluye lo siguiente:
+Una vez realizado el análisis de las varianzas por medio de la función **t.test()** y posteriormente analizando los 2 variables con la misma función se concluye lo siguiente:
 
-#### **Con niveles de confianza de 90%,95% y 99%, existe evidencia estadística para rechazar Ho, por lo tanto podemos asumir que los hogares mexicanos que pertenecen a un NSE alto, en promedio, gastan más en alimentos NO saludables que los hogares que pertenecen a un NSE bajo, contrario a la opinión pública.**
+Con niveles de confianza de 90%,95% y 99%, existe evidencia estadística para rechazar Ho, por lo tanto podemos asumir que, **los hogares mexicanos que pertenecen a un NSE alto, en promedio, gastan más en alimentos NO saludables que los hogares que pertenecen a un NSE bajo, contrario a la opinión pública**.
 
 
 
