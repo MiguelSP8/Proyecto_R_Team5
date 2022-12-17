@@ -71,10 +71,11 @@ de un hogar que pertenece a un NSE Alto.
 En este apartado se analizará la veracidad de las conclusiones que hemos encontrado en nuestro analisis estadístico previo, con base en la información de la muestra, en relación a la población.
 
 Nos interesa analizar los patrones de gasto en alimentos saludables y no saludables en los hogares mexicanos con base a:
+```
 * Su nivel socioeconómico, 
 * Si el hogar tiene recursos financieros extras al ingreso 
 * Si presenta o no inseguridad alimentaria.
-
+```
 Recordando:
 ```
 si muestra>=30 o conocemos varianza de población => Normal
@@ -90,3 +91,17 @@ _En nuestro caso, desconocemos el dato preciso de las medidas de tendencia centr
 
 ![**Figura 4.1:** BoxPlot NSE Alto vs NSE < Alto](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_1_boxplot.PNG "Figura 4.1: BoxPlot NSE Alto vs NSE < Alto")
 
+#### Planteamiento de hipótesis:
+```
+Hipótesis nula, Ho: mu(ln_alns)_nse5f('alto') <=  mu(ln_alns)_nse5f('< que alto')
+Hipótesis alternativa, Ha: mu(ln_alns)_NSE('alto') >  mu(ln_alns)_NSE('< que alto')
+
+Se están comparando dos grupos, por lo tanto se analizará la varianza de las dos muestras (inferencia sobre la media de dos poblaciones)
+```
+## Ejecutando las pruebas ⚙️
+
+#### Una vez realizado el análisis de las varianzas por medio de la función t.test() y posteriormente analizando los 2 variables con la misma función se concluye lo siguiente:
+
+```
+**Con niveles de confianza de 90%,95% y 99%, no existe evidencia estadística para rechazar Ho, por lo tanto podemos asumir que los hogares mexicanos que pertenecen a un NSE alto, en promedio, gastan más en alimentos NO saludables que los hogares que pertenecen a un NSE bajo, contrario a opinión pública**
+```
