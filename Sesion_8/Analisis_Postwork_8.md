@@ -146,6 +146,8 @@ En esta gráfica observamos una distribución de probabilidad de tipo LEPTOCURTI
 Como se puede apreciar en la gráfica 2.1, obtenemos una probabilidad del **0.525** de que un hogar que NO percibe ingresos extra, gaste más en ALNS, que el promedio
 del gasto de un hogar, que SI percibe ingresos extra.
 
+
+
 2. ¿Cuál es la probabilidad de que los hogares que padecen IA relativamente, destinen más recursos al consumo de ALNS, que el promedio de los hogares que NO
 padecen IA?
 
@@ -159,6 +161,8 @@ En esta gráfica observamos una distribución de probabilidad de tipo LEPTOCURTI
 
 Existe una probabilidad del **0.423** de que un hogar que padece IA, gaste relativamente más en ALNS, que el promedio del gasto relativo de un hogar que no padece IA.
 
+
+
 3. ¿Cuál es la probabilidad de que los hogares que pertenecen a un NSE Bajo, destinen más recursos al consumo de ALNS, que el promedio de los hogares que 
 pertenecen a un NSE Alto?
 
@@ -171,6 +175,7 @@ En esta gráfica observamos una distribución de probabilidad de tipo LEPTOCURTI
 #### Conclusiones:
 
 Como podemos observar, hay una probabilidad del **0.368** de que un hogar que pertenece al NSE Bajo, gaste relativamente más en ALNS, que el promedio del gasto relativo de un hogar que pertenece a un NSE Alto.
+
 
 
 # 3) Planteamiento de  hipótesis estadísticas para entender el problema en México.
