@@ -107,7 +107,7 @@ Una vez analizados los patrones de gasto en ALS y ALNS como función de cada unn
 ```
 IA (2 opciones) x refin (2 opciones) x NSE5F (5 opciones)
 ```
-En las figuras 1.4 y 1.5, se presenta la distribución del gasto en alimentos saludables y no saludables, respectivamente, para las diferentes combinaciones, agrupando las distribuciones de acuerdo al nivel socioeconómico. Mediante el analisis de las medidas de tendencia central, dispersión estándar (dataframe no presentado) y el resto de observables analizados, así como a través de las gráficas antes mencionadas, se puede notar que las distribuciones de datos ordenados mediante estas 20 diferentes grupos, tiene las mismas características que las descritas en la sesión 1 del análisis descriptivo de la información.
+En las figuras 1.4 y 1.5, se presenta la distribución del gasto en alimentos saludables y no saludables, respectivamente, para las 20 diferentes combinaciones, agrupando las distribuciones de acuerdo al nivel socioeconómico. Mediante el analisis de las medidas de tendencia central, dispersión estándar (dataframe no presentado) y el resto de observables analizados, así como a través de las gráficas antes mencionadas, se puede notar que las distribuciones de datos ordenados mediante estos 20 diferentes grupos, tiene las mismas características que las descritas en el análisis descriptivo conforme a cada variable individual (ver información en subsecciones anteriores).
 
 ![**Figura 1.4:** Distribución de gastos en relación al análisis conjunto: ALS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/als.png "Figura 2: Distribución del logaritmo natural del gasto en alimentos saludables como función de la IA, NSE y la disponibilidad de ingresos extra")
 
