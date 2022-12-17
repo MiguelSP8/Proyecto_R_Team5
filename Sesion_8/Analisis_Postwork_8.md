@@ -98,7 +98,7 @@ Con base en los resultados ariba presentados, podemos realizar las siguientes ob
 
 #### Conclusiones (insuficiencia alimentaria):
 
-- Los hogares que padecen insuficiencia laimentaria destinan más recursos al consumo de ALNS que los hogares que no padecen IA (Prueba de hipótesis pendiente).
+- En promedio, los hogares que no padecen insuficiencia alimentaria destinan más recursos al consumo de ALNS que los hogares que padecen IA (Prueba de hipótesis pendiente).
 - Los patrones de gasto en ALS son más homogéneos que los patrónes de gasto en ALNS.
 
 ### Análisis conjunto: nivel socioeconómico, insuficiencia laimentaria y disponibilidad de ingresos extra
@@ -126,7 +126,7 @@ En consideración de lo anterior, el siguiente data frame solo se presentan los 
 
 Con base en los resultados ariba presentados, podemos realizar las siguientes observaciones:
 
-- De lo anterior, se encuentra que los hogares que pertenecen a la categoria refin=No, IA=No y NSEF5=Alto son los que más gastan en alimentos no saludables en comparación al gasto en alimentos saludables. Mientras que los hogares que pertenecen a la categoria refin=Si, IA=Si, NSEF5=Bajo son quienes destinan menos dinero al consumo de alimentos no saludables en relación al consumo de alimentos saludables.
+- De lo anterior, se encuentra que los hogares que pertenecen a la categoria refin=No, IA=No y NSEF5=Alto son los que más gastan en alimentos no saludables en comparación al gasto en alimentos saludables. Mientras que los hogares que pertenecen a la categoria refin=No, IA=Si, NSEF5=Bajo son quienes destinan menos dinero al consumo de alimentos no saludables en relación al consumo de alimentos saludables.
 - En general se puede ver que, contrario a la opinión publica, los hogares con mejor nivel socioeconómico destinan más dinero al consumo de alimentos NO saludables en comparación al usado para el consumo de alimentos saludables, absuluta y relativamente.
 - Para todos los NSE, se encuentra que los hogares que padecen IA priorizan el gasto en ALS sobre los ALNS, los que reciben ingresos extra un poco más que los que no.
 
