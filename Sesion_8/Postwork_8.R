@@ -808,7 +808,7 @@ library(ggplot2)
 df <- data.frame(df %>% mutate(nse5f_analisis = ifelse(nse5f == "Alto", "Alto", "< que Alto")))
 ggplot(data = df) +
   geom_boxplot(aes(x = nse5f_analisis, y = ln_alns, colour = nse5f_analisis)) +
-  labs(title = "Nivel socioeconómico en hogares con gasto en elimentos NO saludables",
+  labs(title = "Nivel socioeconómico en hogares con gasto en alimentos NO saludables",
        x = "Nivel socioeconómico",
        y = "Frecuencia") +
   theme_classic()
