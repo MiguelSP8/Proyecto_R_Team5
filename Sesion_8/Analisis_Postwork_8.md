@@ -24,19 +24,7 @@ Texto
 
 5. También se encontró que para todos los niveles socioeconómicos, los hogares con ingresos extra y que padecen insuficiencia alimentaria son quienes **priorizan más** el consumo de alimentos **saludables** sobre los **no saludables**.
 
-## Modelo de regresión logística
 
-1. La probabilidad de padecer insuficiencia alimentaria es menor conforme aumenta el nivel socioeconómico del hogar, en comparación con la probabilidad de padecer insuficiencia alimenaria para un hogar con un nivel socioeconómico bajo.
-
-2. La probabilidad de padecer insuficiencia alimentaria para un hogar en una zona rural es menor que para un hogar en una zona urbana.
-
-3. El incremento del número de personas en un hogar aumenta la probabilidd de padecer insuficiencia alimentaria.
-
-4. La probabilidad de padecer insuficiencia alimentaria en un hogar con jefe de familia mujer es ligeramente mayor que para un hogar con jefe de familia hombre.
-
-5. Los años de educación del jefe del hogar disminuyen la probabilidad de padecer insuficiencia alimentaria.
-
-6. El aumento en el gasto par ala adquisición de alimnetos, tanto saludables como no saludables, disminuye el riesgo de padecer insuficiencia alimentaria.
 
 ## Análisis de probabilidades
 
@@ -181,4 +169,42 @@ _Se están comparando dos grupos, por lo tanto se analizará la varianza de las 
 #### Una vez realizado el análisis por medio de la función **anova()**, por cuestiones de categorízación de la variables NSE, se concluye lo siguiente:
 
 #### **Con niveles de confianza de 90%,95% y 99%, existe evidencia estadística para rechazar Ho, por lo tanto podemos asumir que al menos uno de los promedios es diferente, esto implica que el nivel socioeconómico si tiene efecto sobre la razón entre el gasto en ALNS y ALS.**
+
+
+# Modelo de regresión logística
+
+Se quiere estimar la probabilidad de que un hogar presente inseguridad alimentaria o no
+
+**_Al hablar de probabilidad significa que necesitamos hacer un modelo de regresión logística_**
+
+## Análisis: 📋
+
+### Análisis de correlaciones entre variables numericas
+
+**_A partir de la matriz de correlación como del análisis visual, No hay evidencia de correlación entre las variables numéricas que describen el problema_**
+
+### Se genera el modelo de regresión logística, usando todas las variables disponibles.
+
+#### Planteamiento de hipótesis: 📋
+
+* **H_0: Bi = 0**
+* **H_a : Bi != 0**
+
+## Información obtenida: 📋
+### Tabla de resultados
+FALTA
+
+## Conclusiones ⚙️
+
+1. La probabilidad de padecer insuficiencia alimentaria es menor conforme aumenta el nivel socioeconómico del hogar, en comparación con la probabilidad de padecer insuficiencia alimentaria para un hogar con un nivel socioeconómico bajo.
+
+2. La probabilidad de padecer insuficiencia alimentaria para un hogar en una zona rural es menor que para un hogar en una zona urbana.
+
+3. El incremento del número de personas en un hogar aumenta la probabilidd de padecer insuficiencia alimentaria.
+
+4. La probabilidad de padecer insuficiencia alimentaria en un hogar con jefe de familia mujer es ligeramente mayor que para un hogar con jefe de familia hombre.
+
+5. Los años de educación del jefe del hogar disminuyen la probabilidad de padecer insuficiencia alimentaria.
+
+6. El aumento en el gasto par ala adquisición de alimnetos, tanto saludables como no saludables, disminuye el riesgo de padecer insuficiencia alimentaria.
 
