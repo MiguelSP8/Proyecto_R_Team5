@@ -37,3 +37,30 @@ Texto
 5. Los años de educación del jefe del hogar disminuyen la probabilidad de padecer insuficiencia alimentaria.
 
 6. El aumento en el gasto par ala adquisición de alimnetos, tanto saludables como no saludables, disminuye el riesgo de padecer insuficiencia alimentaria.
+
+## Análisis de probabilidades
+
+En concordancia con el análisis anterior, podemos obtener la probabilidad y gráficos de densidad que nos permitan visualizar el comportamiento de las variables en términos estadisticos, los cuales se describen a continuación:
+
+1. ¿Cuál es la probabilidad de que los hogares que NO reciben ingresos extra, destinen relativamente más recursos al consumo de ALNS, que el promedio de
+los hogares que SI perciben ingresos extra?
+
+![**Figura XX:** Gráfica de densidad de probabilidad NIE vs SIE](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/grafica_E1.png "Figura XX: Gráfica de densidad de probabilidad NIE vs SIE")
+
+Como se puede apreciar en la gráfica XX, obtenemos una probabilidad del 0.525 de que un hogar que NO percibe ingresos extra, gaste más en ALNS, que el promedio
+del gasto de un hogar, que SI percibe ingresos extra.
+
+2. ¿Cuál es la probabilidad de que los hogares que padecen IA relativamente, destinen más recursos al consumo de ALNS, que el promedio de los hogares que NO
+padecen IA?
+
+![**Figura XXX:** Gráfica de densidad de probabilidad si IA vs no IA](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/grafica_E2.png "Figura XXX: Gráfica de densidad de probabilidad si IA vs no IA")
+
+Existe una probabilidad del 0.423 de que un hogar que padece IA, gaste relativamente más en ALNS, que el promedio del gasto relativo de un hogar que no padece IA.
+
+3. ¿Cuál es la probabilidad de que los hogares que pertenecen a un NSE Bajo, destinen más recursos al consumo de ALNS, que el promedio de los hogares que 
+pertenecen a un NSE Alto?
+
+![**Figura IV:** Gráfica de densidad de probabilidad NSE Bajo vs NSE Alto](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/grafica_E3.png "Figura IV: Gráfica de densidad de probabilidad NSE Bajo vs NSE Alto")
+
+Como podemos observar, hay una probabilidad del 0.368 de que un hogar que pertenece al NSE Bajo, gaste relativamente más en ALNS, que el promedio del gasto relativo
+de un hogar que pertenece a un NSE Alto.
