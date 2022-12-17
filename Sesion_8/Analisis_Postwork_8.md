@@ -119,9 +119,11 @@ Con base en los resultados ariba presentados, podemos realizar las siguientes ob
 - En el caso de la distribución del ln de los gastos en alimentos NO saludables, la mayoria de las distribuciones presentan un sesgo a la derecha (s>0) y curtosis menor a 3 (platocúrticas), aunque bastante cercanas al umbral k=3 (mesocúrticas). Esto nos habla de que los patrones de gasto en alimentos saludables son menos homogéneos entre los diferentes hogares pertenecientes a la misma categoría en comparación con el patrón de gasto en alimentos saludables.
 
 ![**Figura 5:** Distribución de gastos en relación al análisis conjunto: ALS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/als.png "Figura 2: Distribución del logaritmo natural del gasto en alimentos saludables como función de la IA, NSE y la disponibilidad de ingresos extra")
+
 **Figura 5:** Distribución del logaritmo natural del gasto en alimentos saludables como función de la IA, NSE y la disponibilidad de ingresos extra.
 
 ![**Figura 6:** Distribución de gastos en relación al análisis conjunto: ALNS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/alns.png "Figura 2: Distribución del logaritmo natural del gasto en alimentos saludables como función de la IA, NSE y la disponibilidad de ingresos extra")
+
 **Figura 6:** Distribución del logaritmo natural del gasto en alimentos NO saludables como función de la IA, NSE y la disponibilidad de ingresos extra.
 
 #### Conclusiones:
