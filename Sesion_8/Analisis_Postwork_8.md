@@ -180,7 +180,7 @@ _Adicionalmente para comprobar que los observaciones categorícas de la variable
 
 Previo a la demostración, visualizamos las 2 variables de estudio por medio de boxplot.
 
-![**Figura 4.1:** Boxplot Nivel Socioeconómico (NSE)  Alto y NSE (< Alto) comparados con el gasto en ALNS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_1_boxplot.PNG "Figura 4.1: Boxplot Nivel Socioeconómico (NSE)  Alto y NSE (< Alto) comparados con el gasto en ALNS")
+![**Figura 3.1:** Boxplot Nivel Socioeconómico (NSE)  Alto y NSE (< Alto) comparados con el gasto en ALNS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_1_boxplot.PNG "Figura 3.1: Boxplot Nivel Socioeconómico (NSE)  Alto y NSE (< Alto) comparados con el gasto en ALNS")
 
 **Figura 4.1:** Boxplot Nivel Socioeconómico (NSE)  Alto y NSE (< Alto) comparados con el gasto en ALNS.
 
@@ -203,7 +203,7 @@ Con niveles de confianza de 90%,95% y 99%, existe evidencia estadística para re
 
 Previo a la demostración visualizamos las 2 variables de estudio por medio de boxplot
 
-![**Figura 4.2:** Boxplot Nivel Socioeconómico (NSE)  Alto y NSE (< Alto) comparados con la razón de ALNS/ALS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_2_boxplot.PNG "Figura 4.2: Boxplot Nivel Socioeconómico (NSE)  Alto y NSE (< Alto) comparados con la razón de ALNS/ALS")
+![**Figura 3.2:** Boxplot Nivel Socioeconómico (NSE)  Alto y NSE (< Alto) comparados con la razón de ALNS/ALS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_2_boxplot.PNG "Figura 3.2: Boxplot Nivel Socioeconómico (NSE)  Alto y NSE (< Alto) comparados con la razón de ALNS/ALS")
 
 **Figura 4.2:** Boxplot Nivel Socioeconómico (NSE)  Alto y NSE (< Alto) comparados con la razón de ALNS/ALS.
 
@@ -225,9 +225,9 @@ Con niveles de confianza de 90%,95% y 99%, existe evidencia estadística para re
 
 Previo a la demostración visualizamos las 2 variables de estudio por medio de boxplot
 
-![**Figura 4.3:** Boxplot Ingreso Extra en Hogares (Si/No) comparados con la razón de ALNS/ALS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_3_boxplot.PNG "Figura 4.3: Boxplot Ingreso Extra en Hogares (Si/No) comparados con la razón de ALNS/ALS")
+![**Figura 3.3:** Boxplot Ingreso Extra en Hogares (Si/No) comparados con la razón de ALNS/ALS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_3_boxplot.PNG "Figura 3.3: Boxplot Ingreso Extra en Hogares (Si/No) comparados con la razón de ALNS/ALS")
 
-**Figura 4.3:** Boxplot Ingreso Extra en Hogares (Si/No) comparados con la razón de ALNS/ALS.
+**Figura 3.3:** Boxplot Ingreso Extra en Hogares (Si/No) comparados con la razón de ALNS/ALS.
 
 **Planteamiento de hipótesis:📋**
 
@@ -247,9 +247,9 @@ Con niveles de confianza de 90%,95% y 99%, existe evidencia estadística para re
 
 Previo a la demostración visualizamos las 2 variables de estudio por medio de boxplot
 
-![**Figura 4.4:** BoxPlot Boxplot Hogares con Insuficiencia Alimentaria (Si/No) comparados con la razón de ALNS/ALS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_3_boxplot.PNG "Figura 4.4: Boxplot Hogares con Insuficiencia Alimentaria (Si/No) comparados con la razón de ALNS/ALS ")
+![**Figura 3.4:** BoxPlot Boxplot Hogares con Insuficiencia Alimentaria (Si/No) comparados con la razón de ALNS/ALS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_3_boxplot.PNG "Figura 3.4: Boxplot Hogares con Insuficiencia Alimentaria (Si/No) comparados con la razón de ALNS/ALS ")
 
-**Figura 4.4:** Boxplot Hogares con Insuficiencia Alimentaria (Si/No) comparados con la razón de ALNS/ALS.
+**Figura 3.4:** Boxplot Hogares con Insuficiencia Alimentaria (Si/No) comparados con la razón de ALNS/ALS.
 
 **Planteamiento de hipótesis:📋**
 
@@ -268,9 +268,9 @@ Con niveles de confianza de 90%,95% y 99%, existe evidencia estadística para re
 
 Previo a la demostración visualizamos las 2 variables de estudio por medio de boxplot
 
-![**Figura 4.5:** Boxplot hogares clasificados por nivel socioeconómico y comparados con la razón de ALNS/ALS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_5_boxplot.PNG "Figura 4.5: Boxplot hogares clasificados por nivel socioeconómico y comparados con la razón de ALNS/ALS")
+![**Figura 3.5:** Boxplot hogares clasificados por nivel socioeconómico y comparados con la razón de ALNS/ALS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_5_boxplot.PNG "Figura 3.5: Boxplot hogares clasificados por nivel socioeconómico y comparados con la razón de ALNS/ALS")
 
-**Figura 4.5:** Boxplot hogares clasificados por nivel socioeconómico y comparados con la razón de ALNS/ALS.
+**Figura 3.5:** Boxplot hogares clasificados por nivel socioeconómico y comparados con la razón de ALNS/ALS.
 
 **Planteamiento de hipótesis:📋**
 * Ho: avg_rateNS_nse(alto) = avg_rateNS_nse(medio alto) = avg_rateNS_nse(medio) = avg_rateNS_nse(medio bajo) = avg_rateNS_nse(bajo)
@@ -299,9 +299,9 @@ _Es útil para modelar la probabilidad de un evento ocurriendo en función de ot
 
 1.- Dentro del análisis de correlaciones entre variables numericas, se determinó que no hay evidencia de correlación entre las variables numéricas que describen el problema.
 
-![**Figura 5.1:** Análisis de correlaciones entre variables numericas.](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/5_1_boxplot.PNG "Figura 5.1: Análisis de correlaciones entre variables numericas.")
+![**Figura 4.1:** Análisis de correlaciones entre variables numericas.](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/5_1_boxplot.PNG "Figura 4.1: Análisis de correlaciones entre variables numericas.")
 
-**Figura 5.1:** Análisis de correlaciones entre variables numericas.
+**Figura 4.1:** Análisis de correlaciones entre variables numericas.
 
 2.- De acuerdo al modelo de regresión logística y utilizando todas las variables disponibles se plantea lo siguiente: 
 
