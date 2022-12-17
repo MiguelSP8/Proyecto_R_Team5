@@ -332,6 +332,8 @@ Se quito la variable **edadjef** y se creó un nuevo modelo.
 
 **Conclusiones generales observadas en la regresión⚙️**
 
+* Considerando la interpretación de los coefficientes **odds**
+
 1. La probabilidad de padecer insuficiencia alimentaria es menor conforme aumenta el nivel socioeconómico del hogar, en comparación con la probabilidad de padecer insuficiencia alimentaria para un hogar con un nivel socioeconómico bajo.
 
 2. La probabilidad de padecer insuficiencia alimentaria para un hogar en una zona rural es menor que para un hogar en una zona urbana.
