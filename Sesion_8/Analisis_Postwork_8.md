@@ -64,3 +64,29 @@ pertenecen a un NSE Alto?
 
 Como podemos observar, hay una probabilidad del 0.368 de que un hogar que pertenece al NSE Bajo, gaste relativamente más en ALNS, que el promedio del gasto relativo
 de un hogar que pertenece a un NSE Alto.
+
+
+# Planteamiento de  hipótesis estadísticas para entender el problema en México.
+
+En este apartado se analizará la veracidad de las conclusiones que hemos encontrado en nuestro analisis estadístico previo, con base en la información de la muestra, en relación a la población.
+
+Nos interesa analizar los patrones de gasto en alimentos saludables y no saludables en los hogares mexicanos con base a:
+* Su nivel socioeconómico, 
+* Si el hogar tiene recursos financieros extras al ingreso 
+* Si presenta o no inseguridad alimentaria.
+
+Recordando:
+```
+si muestra>=30 o conocemos varianza de población => Normal
+si muestra<30 Y no conocemos varianza de población => t-student
+```
+_En nuestro caso, desconocemos el dato preciso de las medidas de tendencia central y dispersión estadística de la población, usaremos la prueba **t.test()** para verificar si la media muestral para cada una de las 20 combinaciones posibles de las variables IA, refin y nse5f son representativas de la población.
+
+**Nuestros planteamientos son:**
+
+## 1) Existe evidencia estadística para asumir que los hogares mexicanos que pertenecen a un nivel socioeconómico (NSE) alto, en promedio, gastan más en alimentos NO saludables que los hogares que pertenecen a un nivel socioeconómico (NSE) menor a Alto.
+
+### Previo a la demostración visualizamos las 2 variables de estudio por medio de boxplot
+
+![**Figura 4.1:** BoxPlot NSE Alto vs NSE < Alto](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/4_1_boxplot.png "Figura 4.1: BoxPlot NSE Alto vs NSE < Alto")
+
