@@ -308,7 +308,7 @@ _Es útil para modelar la probabilidad de un evento ocurriendo en función de ot
 
 2.- De acuerdo al modelo de regresión logística y utilizando todas las variables disponibles se plantea lo siguiente: 
 
-    * Planteamiento de hipótesis: 📋*
+    *Planteamiento de hipótesis:*
         * H_0: Bi = 0
         * H_a : Bi != 0
 
