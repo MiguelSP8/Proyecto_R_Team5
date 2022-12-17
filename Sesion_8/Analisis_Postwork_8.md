@@ -57,7 +57,7 @@ Con base en los resultados ariba presentados, podemos realizar las siguientes ob
 ![**Figura 1.1:** Distribución de gastos como función del nivel socioeconómico](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/NSE.png "Figura 2: Distribución del logaritmo natural del gasto en alimentos saludables y no saludables como función del nivel socioeconómico")
 **Figura 1.1:** Distribución del logaritmo natural del gasto en alimentos saludables y no saludables como función del nivel socioeconómico.
 
-#### Conclusiones:
+#### Conclusiones (nivel socioeconómico):
 
 - Contrario a la opinión publica, en promedio, los hogares de NSE altos gastan más en ALNS que los hogares pertenecientes a los NSE bajos, no solo en términos absolutos, sino también en términos relativos con relación a su gasto en ALS (Prueba de hipótesis pendiente).
 - Los patrones de gasto en ALS son más homogéneos que los patrónes de gasto en ALNS.
@@ -77,7 +77,7 @@ Con base en los resultados ariba presentados, podemos realizar las siguientes ob
 ![**Figura 1.2:** Distribución de gastos como función de la percepción de ingresos extra](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/refin.png "Figura 2: Distribución del logaritmo natural del gasto en alimentos saludables y no saludables como función de la percepción de ingresos extra")
 **Figura 1.2:** Distribución del logaritmo natural del gasto en alimentos saludables y no saludables como función de la percepción de ingresos extra.
 
-#### Conclusiones:
+#### Conclusiones (ingresos extra):
 
 - Los hogares que perciben ingresos extra gastan más dinero en ALS y menos dinero en ALNS que los hogares que no perciben ingresos extra (Prueba de hipótesis pendiente).
 - Los patrones de gasto en ALS son más homogéneos que los patrónes de gasto en ALNS.
@@ -96,7 +96,7 @@ Con base en los resultados ariba presentados, podemos realizar las siguientes ob
 ![**Figura 1.3:** Distribución de gastos en relación a la insuficiencia alimentaria](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/IA.png "Figura 2: Distribución del logaritmo natural del gasto en alimentos saludables y no saludables en relación a la insuficiencia alimentaria")
 **Figura 1.3:** Distribución del logaritmo natural del gasto en alimentos saludables y no saludables en relación a la insuficiencia alimentaria.
 
-#### Conclusiones:
+#### Conclusiones (insuficiencia alimentaria):
 
 - Los hogares que padecen insuficiencia laimentaria destinan más recursos al consumo de ALNS que los hogares que no padecen IA (Prueba de hipótesis pendiente).
 - Los patrones de gasto en ALS son más homogéneos que los patrónes de gasto en ALNS.
