@@ -1,8 +1,10 @@
 # Análisis de resultados obtenidos en el desarrollo del Postwork asociado a la sesión 8
 
+ <div class=text-justify>
 En este documento se describen las principales conclusiones asociadas con el análisis de patrones de gasto en alimentos saludables y no saludables de los hogares mexicanos, como función de observables estadísticos de interés como el *nivel socioeconómico*, la percepción  de *ingresos extra* y el riesgo de padecer *insuficiencia alimentaria*. Así mismo, se presentan las principales conclusiones extraídas del análisis de un modelo de regresión logístico, utilizado para encontrar los parámetros socioeconómicos determinantes para que un hogar padezca o no insuficiencia alimentaria. 
 
 Tenemos información de un extracto de la Encuesta Nacional de Salud y Nutrición (2012) levantada por el Instituto Nacional de Salud Pública en México. En dicha base de datos se presenta información sonre el nivel socioeconómico (nse5f), el área geográfica (area), el número de personas en el hogar (nompeho), la disponibilidad de ingresis extra (refin), la edad (edadjef) y el sexo (sexojef) del jefe de familia así como sus años de educación (añosedu). También hay información sobre si el hogar presenta insuficiencia alimentaria (IA) y sobre el logaritmo natural del gasto de cada hogar en alimentos saludables (ln_als) y no saludables (ln_alns). Como punto de partida, se realizó una limpieza de datos, seguida de un análisis exploratorio, en busca de entender la muestra de datos con la que se está trabajando. En la figura 1 se muestran los resultados obtenidos a partír de esté análisis exploratorio.
+</div>
 
 ![**Figura 1:** Resultados del análisis exploratorio de datos.](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/analisis1.png "Figura 1: Resultados del análisis exploratorio de datos")
 **Figura 1:** Resultados del análisis exploratorio de datos. Distribución de hogares por A) Nivel socioeconómico, B) zona geográfica, C) percepción de ingresos extra, D) sexo del jefe del hogar, E) insuficiencia alimentaria, F) número de personas que conforman el hogar, G) Edad y H) años de educación del jefe de familia.
