@@ -347,11 +347,7 @@ _Es útil para modelar la probabilidad de un evento ocurriendo en función de ot
 
 Se quito la variable **edadjef** y se creó un nuevo modelo.
 
-**Conclusiones**
-
-| Variables | mómios |  p-value 
-| --- | --- | --- | --- |
-| B0 | - | 2x10^-16 | Si
+**Conclusiones: **
 
     * La probabilidad de padecer IA para un hogar con NSE5F "Medio bajo" es 0.7372 la 
       probabilidad de padecer IA para un hogar con NSE5F "bajo". 
