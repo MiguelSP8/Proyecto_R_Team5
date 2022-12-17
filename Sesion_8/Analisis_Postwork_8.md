@@ -156,7 +156,7 @@ de un hogar que pertenece a un NSE Alto.
 
 
 
-# 3) Planteamiento de  hipótesis estadísticas para entender el problema en México.
+## 3) Planteamiento de  hipótesis estadísticas para entender el problema en México.
 
 En este apartado se analizará la veracidad de las conclusiones que hemos encontrado en nuestro analisis estadístico previo, con base en la información de la muestra, en relación a la población. Considerando los siguientes puntos:
 
