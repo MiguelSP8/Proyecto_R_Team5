@@ -799,4 +799,4 @@ exp(coef(logistic.2))# quitamos logaritmo
 "
 6) Escribe tu análisis en un archivo README.MD y tu código en un script de R y publica ambos en un repositorio de Github.
 "
-# Ver directorio Sesion_9 en reositorio: https://github.com/MiguelSP8/Proyecto_R_Team5.git
+# Ver directorio Sesion_8 en reositorio: https://github.com/MiguelSP8/Proyecto_R_Team5.git
