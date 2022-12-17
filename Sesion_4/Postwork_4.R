@@ -103,3 +103,10 @@ b2
 #3.73058
 #comprobación
 pnorm(q=b2, mean = mean, sd = sd,lower.tail = TRUE, log.p = FALSE)-pnorm(q=b, mean = mean, sd = sd,lower.tail = TRUE, log.p = FALSE)
+
+x <- seq(-4, 4, 0.01)*sd + mean
+y <- dnorm(x, mean = mean, sd = sd) 
+curve(dnorm(x, mean = mean, sd = sd), from = mean-5*sd, to = mean+5*sd, 
+      col='blue', main = "Densidad de Probabilidad Normal",
+      ylab = "f(x)", xlab = "X",sub="Dejando al centro el 80 % de la probabilidad")
+polygon(c(b, x[x>=b & x<=b2], b2), c(0, y[x>=b & x<=b2], 0), col="green")
