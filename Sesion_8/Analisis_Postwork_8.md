@@ -285,29 +285,35 @@ Con niveles de confianza de 90%,95% y 99%, existe evidencia estadística para re
 
 ## 4) Modelo de regresión logística
 
-Se quiere estimar la probabilidad de que un hogar presente inseguridad alimentaria o no
+En este punto se requiere estimar la probabilidad de que un hogar presente inseguridad alimentaria o no, al hablar de probabilidad 
+significa que necesitamos hacer un modelo de regresión logística.
 
-**_Al hablar de probabilidad significa que necesitamos hacer un modelo de regresión logística_**
+Recordando:
 
-### Análisis: 📋
+_La regresión lineal es una técnica de modelado estadístico que se emplea para describir una variable de respuesta continua 
+como una función de una o varias variables predictoras. Puede ayudar a comprender y predecir el comportamiento de distintos 
+fenómenos aleatorios._
 
-#### Análisis de correlaciones entre variables numericas
+_Este modelo describe la relación entre una variable dependiente como una función de una o varias variables independientes. El método más utlizado para su estimación es el de Mínimos Cuadrados Ordinarios, el cual consiste en minizar la suma de los residuos al cuadrado, siendo el residuo la diferencia que hay entre el valor observado y el valor pronosticado por una propuesta de modelo._
 
-**_A partir de la matriz de correlación como del análisis visual, No hay evidencia de correlación entre las variables numéricas que describen el problema_**
+**Análisis: 📋**
 
-#### Se genera el modelo de regresión logística, usando todas las variables disponibles.
+Análisis de correlaciones entre variables numericas
+
+_A partir de la matriz de correlación como del análisis visual, No hay evidencia de correlación entre las variables numéricas que describen el problema_
 
 **Planteamiento de hipótesis: 📋**
 
 * H_0: Bi = 0
 * H_a : Bi != 0
 
-** Información obtenida: 📋**
+**Información obtenida: 📋**
 
-#### Observaciones
+**Observaciones**
 Tabla de observaciones
 
-**Conclusiones ⚙️**
+
+**Conclusiones Generales observadas en la regresión⚙️**
 
 1. La probabilidad de padecer insuficiencia alimentaria es menor conforme aumenta el nivel socioeconómico del hogar, en comparación con la probabilidad de padecer insuficiencia alimentaria para un hogar con un nivel socioeconómico bajo.
 
