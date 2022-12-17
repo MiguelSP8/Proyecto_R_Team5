@@ -1,6 +1,3 @@
-# Código fuente en R para obtener los resultados 🛠️
-* [Código fuente en R Postwork 8](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/Postwork_8.R)
-
 # Autores ✒️
 
 **Equipo 5 BEDU**
@@ -11,6 +8,7 @@
 
 
 # Análisis de resultados obtenidos en el desarrollo del Postwork asociado a la sesión 8
+* [Código fuente en R Postwork 8](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/Postwork_8.R)
 
 En este documento se describen las principales conclusiones asociadas con el análisis de patrones de gasto en alimentos saludables y no saludables, como función de observables estadísticos de interés como el *nivel socioeconómico*, la percepción  de *ingresos extra* y el riesgo de padecer *insuficiencia alimentaria*. Así mismo, se presentan las principales conclusiones extraídas del análisis de un modelo de regresión logístico utilizado para encontrar los parámetros socioeconómicos determinantes para padecer o no insuficiencia alimentaria. 
 
