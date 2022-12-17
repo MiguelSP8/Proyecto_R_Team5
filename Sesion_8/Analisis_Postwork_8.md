@@ -64,7 +64,7 @@ Con base en los resultados ariba presentados, podemos realizar las siguientes ob
 - Por el contrario, en promedio, los hogares que perciben ingresos extra gastan menos, en terminos absolutos y relativos, en ALNS que los hogares sin ingresos extra.
 - La distribución del gasto, ln_ALS y ln_ALNS, sigue los mismos patrones descritos respecto al NSE, como puede apreciarse en los paneles A y B de la figura 3.
 
-![**Figura 3:** Distribución de gastos como función de la percepción de ingresos extra](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/NSE.png "Figura 2: Distribución del logaritmo natural del gasto en alimentos saludables y no saludables como función de la percepción de ingresos extra")
+![**Figura 3:** Distribución de gastos como función de la percepción de ingresos extra](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/refin.png "Figura 2: Distribución del logaritmo natural del gasto en alimentos saludables y no saludables como función de la percepción de ingresos extra")
 **Figura 3:** Distribución del logaritmo natural del gasto en alimentos saludables y no saludables como función de la percepción de ingresos extra.
 
 #### Conclusiones:
@@ -83,7 +83,7 @@ Con base en los resultados ariba presentados, podemos realizar las siguientes ob
 - En promedio, los hogares que no padecen de IA gastan más, absoluta y relativamente, en ALNS que los hogares que padecen IA.
 -  La distribución del ln_ALS y ln_ALNS sigue los mismos patrones descritos respecto al NSE y la disponibilidad de ingresos extra.
 
-![**Figura 4:** Distribución de gastos en relación a la insuficiencia alimentaria](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/NSE.png "Figura 2: Distribución del logaritmo natural del gasto en alimentos saludables y no saludables en relación a la insuficiencia alimentaria")
+![**Figura 4:** Distribución de gastos en relación a la insuficiencia alimentaria](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/IA.png "Figura 2: Distribución del logaritmo natural del gasto en alimentos saludables y no saludables en relación a la insuficiencia alimentaria")
 **Figura 4:** Distribución del logaritmo natural del gasto en alimentos saludables y no saludables en relación a la insuficiencia alimentaria.
 
 #### Conclusiones:
