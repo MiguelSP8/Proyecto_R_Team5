@@ -1,6 +1,4 @@
 '
-ESTE ES UN CAMBIO DE OSWALDO
-
 Un centro de salud nutricional está interesado en analizar estadísticamente y probabilísticamente 
 los patrones de gasto en alimentos saludables y no saludables en los hogares mexicanos con base en
 su nivel socioeconómico, en si el hogar tiene recursos financieros extras al ingreso y en si presenta 
@@ -43,86 +41,641 @@ df$area <- factor(df$area,labels=c("Urbana","Rural"))
 df$refin <- factor(df$refin,labels = c("No","Si"))
 df$sexojef <- factor(df$sexojef,labels = c("H","M"))
 df$IA <- factor(df$IA,labels = c("No","Si"))
+#
+# Consideración:
+#
+# Hablar del gasto en términos absolutos no es del todo concluyente, 
+# ya que el hecho de percibir más ingresos implica la posibilidad de ejercer 
+# gastos mayores tanto en alimentos saudables como no saludables.
+#
+# Tomando en cuenta lo anterior, una variable adecuada para analizar los patrones
+# de gasto sería la razón entre el ln del gasto en alimentos no saludables vs saludables,
+# lo cual nos habla más de la toma de decisión en cuanto al uso de los recursos 
+# disponibles en cada hogar rateNS=ln_alns/ln_als
+#
+# Agregamos columna rateNS
+df <- data.frame(df%>%mutate(rateNS=ln_alns/ln_als))
 View(df)
 "
 1) Plantea el problema del caso
 "
 #
-# Por un lado, se desea analizar los patrones de gasto como función del nivel socioeconómico, 
-# la existencia de ingresos extra y si el hogar presenta insuficiencia alimentaria.
+# Por un lado, se desea analizar los patrones de gasto como función de algunos deterninantes socioeconómicos:
+# 1) El nivel socioeconómico 
+# 2) La existencia de ingresos extra
+# 3) Si el hogar presenta insuficiencia alimentaria
 #
 # También se quiere estimar la probabilidad de que un hogar presente inseguridad alimentaria, 
-# como función de ciertos factores como los patrones de gastos, ingresos extra, conformación del hogar, etc.
+# como función de ciertos factores como la edad, el sexo y la educación del jefe del hogar, la zona geográfica
+# en donse se encuentra el hogar, los patrones de gastos, ingresos extra, conformación del hogar, etc. 
+# Así como determinar cuáles de esos factores son determinantes para que un hogar padezca o no 
+# insuficiencia alimentaria.
 
 "
 2) Realiza un análisis descriptivo de la información
 "
+# Carga de paqueterias de interés para el proyecto
 library(dplyr)
 library(DescTools)
-# Necesitamos analizar los patrones de gasto, relacionados con las variables ln_als,ln_alns, 
-# como función de refin, IA y nse5f
+library(moments)
+library(ggpubr)
 #
-# Para ello, vamos a obtener el promedio, mediana, moda y sd para el gasto en alimentos 
-# saludables y no saludables, para los hogares pertenecientes a cada categoria.
-#
-# Con este objetivo necesitamos agrupar los datos de los hogares en cada una de las 20 combinaciones posibles
-# que derivan de este análisis: 2 (opciones de IA) x 2 (opciones de ingresos extra) x 5 (niveles socioeconómicos).
-# Con ese objetivo en mente, usaremos la función group_by() juno con la función summarise, para obtener 
-# las medidas de tendencia central antes mencionadas para cada una de las 20 categorias.
-#
-# Ordenamos los datos de forma descendiente en función del mean(ln_alns), para fines de análisis
-df%>%select(nse5f,refin,IA,ln_als,ln_alns)%>%group_by(refin,IA,nse5f)%>%summarize(avg_als=mean(ln_als),med_als=median(ln_als),moda_als=Mode(ln_als)[1],sd_als=sd(ln_als),avg_alns=mean(ln_alns),med_alns=median(ln_alns),moda_alns=Mode(ln_alns)[1],sd_alns=sd(ln_alns))%>%arrange(desc(avg_alns))
-# Conclusiones: 
-# 1) En terminos absolutos, los hogares que más gastan en alimentos no saludables son los de nivel socio económico alto 
-# sin ingresos extra y que no padecen IA. Los que menos gastan en alimentos no saludables son los hogares de NSE5F bajo,
-# sin ingresos extra y que presentan IA.
-#
-# 2) En general, para las 20 diferentes combinaciones de categorias asociadas a IA, NSE5F y REFIN, las medidades 
-# de tendencia central coinciden, lo que nos habla de una posible distribución normal. 
-# 
-# Podríamos usar la función filter() para quedarnos unicamente con los datos de cada una de las 20 combinaciones, 
-# si fuera de interes verificar su distribución. Por ejemplo:
-# Para los hogares con NSE5F 'Alto', sin ingresos extra y que no padecen IA:
-#
-df.est<-df%>%filter(refin=="No",IA=="No",nse5f=="Alto")%>%select(ln_alns)
-class(df.est)
-my_hist <- hist(df.est$ln_alns,main="refin=No, IA=No, nsef5=Alto",xlab="Ln(Gasto en alimentos no saludables)")
-#
-# Se comprueba que los datos siguen una distribución normal para esta combinación. No es pertinente hacerlo para todas.
+# Se está trabajando con un extracto de la Encuesta Nacional de Salud y Nutrición (2012)
+# levantada por el Instituto Nacional de Salud Pública en México. En busca de llevar a cabo 
+# el análisis descriptivo de la información, comenzaremos por estudiar cómo está constituida
+# la base de datos con la que se está trabajando.
 #
 #
-# Sin embargo, hablar del gasto en términos ABSOLUTOS no es del todo concluyente, ya que el hecho de 
-# percibir más ingresos implica la posibilidad de ejercer gastos mayores tanto en alimentos saudables
-# como no saludables
+# Visualización descriptiva de datos por variable
 #
-# Considerando lo anterior, una variable adecuada  para caracterizar los patrones de gasto sería la razón
-# entre el gasto en alimentos no saludables vs saludables, la cual nos habla más de la toma de decisión
-# en cuanto al uso de los recursos disponibles en cada hogar.
+# nse5f
 #
-# Ordenamos los datos de forma descendiente respecto a la razón rateNS=mean(ln_alns)/mean(ln_als) 
-# para fines de simplificar el análisis.
+p1 <-ggplot(df, aes(x=nse5f)) + 
+  geom_bar(fill="darkblue",width = 0.9, alpha = c(0.3,0.45,0.5,0.65,0.8)) +
+  scale_y_continuous(limits = c(0, 4500),
+                     breaks = seq(0,4500, 500)) + 
+  labs(x = "Nivel socioeconómico",
+       y = "Frecuencia") + 
+  theme_classic()
+p1 <- p1+  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "red",  size=5)+ 
+  theme(text = element_text(size = 20),axis.text = element_text(size = 12))
+p1
 #
-df%>%select(nse5f,refin,IA,ln_als,ln_alns)%>%group_by(refin,IA,nse5f)%>%summarize(avg_als=mean(ln_als),avg_alns=mean(ln_alns),rateNS=mean(ln_alns)/mean(ln_als))%>%arrange(desc(rateNS))
+# Zona
+#
+p2 <-ggplot(df, aes(x=area)) + 
+  geom_bar(fill="darkblue",width = 0.9, alpha = c(0.45,0.8)) +
+#  scale_y_continuous(limits = c(0, 4500),
+#                     breaks = seq(0,4500, 500)) + 
+  labs(x = "Zona geográfica",
+       y = "Frecuencia") +
+  scale_y_continuous(limits = c(0, 15000),
+                     breaks = seq(0,15000, 3000)) + 
+  theme_classic() 
+p2 <- p2+  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "red",  size=6)+ 
+  theme(text = element_text(size = 20))
+
+p2
+#
+# refin
+#
+p3 <-ggplot(df, aes(x=refin)) + 
+  geom_bar(fill="darkblue",width = 0.9, alpha = c(0.45,0.8)) +
+  #  scale_y_continuous(limits = c(0, 4500),
+  #                     breaks = seq(0,4500, 500)) + 
+  labs(x = "Ingresos extra",
+       y = "Frecuencia") +
+  scale_y_continuous(limits = c(0, 18000),
+                     breaks = seq(0,18000, 2000)) + 
+  theme_classic()
+p3 <- p3+  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "red",  size=6)+ 
+  theme(text = element_text(size = 20))
+
+p3
+#
+# Sexo
+#
+p4 <-ggplot(df, aes(x=sexojef)) + 
+  geom_bar(fill="darkblue",width = 0.9, alpha = c(0.45,0.8)) +
+  #  scale_y_continuous(limits = c(0, 4500),
+  #                     breaks = seq(0,4500, 500)) + 
+  labs(x = "Sexo jefe del hogar",
+       y = "Frecuencia") +
+  scale_y_continuous(limits = c(0, 16000),
+                     breaks = seq(0,16000, 2000)) +
+  theme_classic()
+p4 <- p4+  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "red",  size=6)+ 
+  theme(text = element_text(size = 20))
+
+p4
+#
+# IA
+#
+p5 <-ggplot(df, aes(x=IA)) + 
+  geom_bar(fill="darkblue",width = 0.9, alpha = c(0.45,0.8)) +
+  #  scale_y_continuous(limits = c(0, 4500),
+  #                     breaks = seq(0,4500, 500)) + 
+  labs(x = "Insuficiencia alimentaria",
+       y = "Frecuencia") +
+  scale_y_continuous(limits = c(0, 15000),
+                     breaks = seq(0,15000, 3000)) + 
+  theme_classic()
+p5 <- p5 +  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "red",  size=6)+ 
+  theme(text = element_text(size = 20))
+
+p5
+#
+# numpeho
+#
+p6 <- ggplot(df, aes(x=numpeho)) +
+  geom_histogram(color="darkblue",fill="darkblue",bins =20,alpha=0.4 ) + 
+  labs(x = "no. Personas en hogar",
+       y = "Frecuencia") + 
+  theme_classic()
+p6 <- p6 + theme(text = element_text(size = 20))
+
+p6
+#
+# edad jefe
+#
+p7 <- ggplot(df, aes(x=edadjef)) +
+  geom_histogram(color="darkblue",fill="darkblue",bins =15,alpha=0.4 ) + 
+  labs(x = "Edad de jefe",
+       y = "Frecuencia") + 
+  theme_classic()
+p7 <- p7+ theme(text = element_text(size = 20))
+
+p7
+#
+# años edu
+#
+p8 <- ggplot(df, aes(x=añosedu)) +
+  geom_histogram(color="darkblue",fill="darkblue",bins =12,alpha=0.4 ) + 
+  labs(x = "Años de educación jefe",
+       y = "Frecuencia") + 
+  theme_classic()
+p8 <- p8+ theme(text = element_text(size = 20))
+
+p8
+#
+# En busca de optimizar la presentación de datos, vamos a incluir las gráficas anteriores
+# como paneles en un solo gráfico. Con este fin, usaremos la función ggarrange().
+#
+figure <- ggarrange(p1, p2, p3, p4, p5, p6, p7, p8, 
+                    labels = c("A","B", "C","D","E","F","G","H"),
+                    ncol = 4, nrow = 2)
+annotate_figure(figure)#,
+#                top = text_grob("Distribución del ln_als \n", color = "black", face = "bold", size = 16))
+dev.off()
 #
 # Conclusiones:
 #
-# 1) De lo anterior, se encuentra que los hogares que pertenecen a la categoria refin=No, IA=No y NSEF5=Alto
-# son los que más gastan en alimentos NO saludables en comparación al gasto en alimentos saludables. 
-# Mientras que los hogares que pertenecen a la categoria refin=Si, IA=Si, NSEF5=Bajo son quienes destinan 
-# menos dinero al consumo de alimentos no saludables en relación al destinado para el consumo 
-# de alimentos saludables.
+# La información en las gráficas nos ayuda a entender de mejor manera como está 
+# constituída la muestra que estamos analizando. En allas, es posible ver que la
+# distribución de hogares como función del nivel socioeconómico es aproximadamente
+# uniforme, aumenando ligeramente hacia los niveles socioeconómicos más altos. 
+# Hay aproximadamente una razon de 2:1 hogares en zona urbana respecto a los hogares
+# en zona rural. Así mismo, aproximadamente 3 de cada 4 hogares no percibe ingresos
+# extra. También se puede ver que existe una proporción mayor al 2:1 en cuanto a los 
+# hogares que precentan insuficiencia alimentaria respecto alos que no. En cuanto a 
+# la constitución del hogar, cerca de 3 de cada 4 hogares tiene jefe de hogar hombre.
+# La distribución del número de habitantes en el hogar es cercana a una normal, 
+# con un sesgo a la derecha (distribución tipo gamma). Algo similar se observa 
+# en la distribución de edad del jefe de familia. La distribución de los años de
+# estudio es algo más complicada de entender, los picos coinciden con la culminación
+# de algún grado, siendo los maás frecuentes los asociados a la secundaria y preparatoria.
 #
-# 2) En general se puede ver que, CONTRARIO A LA OPINIÓN PÚBLICA, los hogares con mejor nivel socioeconómico
-# destinan más dinero al consumo de alimentos NO saludables en comparación al usado para alimentos saludables.
 #
-# Ahora analizaremos, para de cada NSEF5, que hogares priorizan más sus gastos en alimentos saludables.
-# Con este fin, ordenaremos los datos por NSE5F de forma descendiente y de forma ascendente en rateNS. 
+# Ahora que ya conocemos nuestra muestra, es momento de analizar los patrones de 
+# gasto en alimentos saludables (ALS) y no slaudables (ALNS), mediante las variables ln_als, 
+# ln_alns y la definida por nosotros, rateNS,  como función de los factores de 
+# interés refin, IA y nse5f. Como una primera aproximación, nos centraremos en 
+# el análisis de los patrones de gasto en relación a cada una de estás variables, 
+# de forma individual.
 #
-df%>%select(nse5f,refin,IA,ln_als,ln_alns)%>%group_by(refin,IA,nse5f)%>%summarize(avg_als=mean(ln_als),avg_alns=mean(ln_alns),rateNS=mean(ln_alns)/mean(ln_als))%>%arrange(desc(nse5f),rateNS)
+#
+# Para este fin, usaremos el siguiente procedimento:
+# 
+# Seleccionamos datos de interes usando select(), agrupamos conforme a las variables 
+# refin, IA y nse5f, según sea el cas, a través de la función group_by(). Luego calculamos
+# los observables de interés mediante la función summarise(). Para el este primer anáisis
+# nos enfocaremos en la media: mean(), mediana: median(), desviación estándar: sd()
+# sesgo: skewness(), curtosis: kurtosis() y el conteo de eventos : n().
+#
+# nse5f : nivel socioeconómico
+#
+df.vis<-df%>%group_by(nse5f)%>%summarise(avg_als=mean(ln_als),
+                                         med_als=median(ln_als),
+                                         sd_als=sd(ln_als),
+                                         ses_als=skewness(ln_als),
+                                         cur_als=kurtosis(ln_als),
+                                         avg_alns=mean(ln_alns),
+                                         med_alns=median(ln_alns),
+                                         sd_alns=sd(ln_alns),
+                                         ses_alns=skewness(ln_alns),
+                                         cur_alns=kurtosis(ln_alns),
+                                         avg_rate=mean(rateNS),
+                                         sd_rate=sd(rateNS),
+                                         n=n())%>%arrange(nse5f)
+df.vis.nse<- data.frame(df.vis)
+df.vis.nse
+View(df.vis.nse)
+# Visualización de distribuciones de datos ln_als y la_alns
+p1 <- ggplot(df, aes(x=ln_als)) +
+  geom_histogram(aes(color=nse5f,fill=nse5f),bins =k+1,alpha=0.4 ) + 
+  #  geom_histogram(aes(y=after_stat(count / sum(count)),color=nse5f,fill=nse5f),bins =k+1,alpha=0.4 ) + 
+  labs(title =  "Saludables", 
+       x = "ln(gasto)",
+       y = "Frecuencia") + 
+  theme_classic()
+p1
+p2 <- ggplot(df, aes(x=ln_alns)) +
+  geom_histogram(aes(color=nse5f,fill=nse5f),bins =k+1,alpha=0.4 ) + 
+  #  geom_histogram(aes(y=after_stat(count / sum(count)),color=nse5f,fill=nse5f),bins =k+1,alpha=0.4 ) + 
+  labs(title =  "No Saludables", 
+       x = "ln(gasto)",
+       y = "Frecuencia") + 
+  theme_classic()
+p2
+# Creamos gráfica de dos paneles
+figure <- ggarrange(p1, p2, 
+                    labels = c("A","B"),
+                    ncol = 2, nrow = 1)
+annotate_figure(figure)#,
+#                top = text_grob("Distribución del ln_als \n", color = "black", face = "bold", size = 16))
+dev.off()
+#
+# Observaciones:
+# 1) El promedio del ln del gasto, tanto en ALS como en los ALNS y en la razon rateNS, 
+# aumenta conforme mejora el nivel socioeconómico. Contrario a la opinión publica,
+# en promedio, los hogares de NSE altos gastan más en ALNS que los hogares 
+# pertenecientes a los NSE bajos, no solo en términos absolutos, sino también
+# en términos relativos con respecto al gasto en ALS. PRUEBA DE HIPÓTESIS PENDIENTE
+#
+# 2) Las medidas de tendencia central (media y mediana) coinciden, en lo general, 
+# tanto para los ALS como para los ALNS, lo que nos habla de distribuciones cercanas
+# a una gaussiana.
+#
+# 3) Para todos los NSE, se presenta sesgo a la izquierda (s<0) en la distribución 
+# del ln(ALS) y una curtosis mayor a 3 (leptocúrtica). Esto nos habla de una cierta
+# homogeneidad en el patrón de gasto en ALS de los hogaresque pertenecen al mismo NSE.
+# Lo anterior se puede corroborar en la gráfica p1, ariba generada.
+#
+# 4) Para todos los NSE, se presenta sesgo a la derecha (s>0) en la distribución 
+# del ln(ALNS) y una curtosis menor que y aproximadamente igual a 3 (mesocúrtica). 
+# Esto nos dice que el patrón de gasto en ALNS de los hogares que pertenecen al 
+# mismo NSE es menos uniforme en comparación con el patron de gasto en ALS. Esto
+# también se puede corroborar visualmente, mediante la gráfica p2 arriba generada.
+#
+# refin : ingresos extra
+#
+df.vis<-df%>%group_by(refin)%>%summarise(avg_als=mean(ln_als),
+                                         med_als=median(ln_als),
+                                         sd_als=sd(ln_als),
+                                         ses_als=skewness(ln_als),
+                                         cur_als=kurtosis(ln_als),
+                                         avg_alns=mean(ln_alns),
+                                         med_alns=median(ln_alns),
+                                         sd_alns=sd(ln_alns),
+                                         ses_alns=skewness(ln_alns),
+                                         cur_alns=kurtosis(ln_alns),
+                                         avg_rate=mean(rateNS),
+                                         sd_rate=sd(rateNS),
+                                         n=n())
+df.vis.ref<- data.frame(df.vis)
+df.vis.ref
+# Visualización de distribuciones de datos ln_als y la_alns
+p1 <- ggplot(df, aes(x=ln_als)) +
+  geom_histogram(aes(color=refin,fill=refin),bins =k+1,alpha=0.4 ) + 
+  #  geom_histogram(aes(y=after_stat(count / sum(count)),color=nse5f,fill=nse5f),bins =k+1,alpha=0.4 ) + 
+  labs(title =  "Saludables", 
+       x = "ln(gasto)",
+       y = "Frecuencia") + 
+  theme_classic()
+p1
+p2 <- ggplot(df, aes(x=ln_alns)) +
+  geom_histogram(aes(color=refin,fill=refin),bins =k+1,alpha=0.4 ) + 
+  #  geom_histogram(aes(y=after_stat(count / sum(count)),color=nse5f,fill=nse5f),bins =k+1,alpha=0.4 ) + 
+  labs(title =  "No Saludables", 
+       x = "ln(gasto)",
+       y = "Frecuencia") + 
+  theme_classic()
+p2
+# Gráfica de dos paneles
+figure <- ggarrange(p1, p2, 
+                    labels = c("A","B"),
+                    ncol = 2, nrow = 1)
+annotate_figure(figure)#,
+#                top = text_grob("Distribución del ln_als \n", color = "black", face = "bold", size = 16))
+dev.off()
+#
+# Observaciones:
+#
+# 1) En promedio, los hogares que perciben ingresos extra gastan más dinero en ALS
+# que los hogares sin ingresos extra. PRUEBA DE HIPÓTESIS PENDIENTE
+#
+# 2) Por el contrario, en promedio, los hogares que perciben ingresos extra gastan menos
+# en terminos absolutos y relativos, en ALNS que los hogares sin ingresos extra.
+# PRUEBA DE HIPÓTESIS PENDIENTE.
+#
+# 3) La distribución del ln_ALS y ln_ALNS sigue los mismos patrones descritos 
+# respecto al NSE, como puede apreciarse en las figuras p1 y p2 arriba generadas.
+#
+#
+# IA : Insuficiencia alimentaria
+#
+df.vis<-df%>%group_by(IA)%>%summarise(avg_als=mean(ln_als),
+                                      med_als=median(ln_als),
+                                      sd_als=sd(ln_als),
+                                      ses_als=skewness(ln_als),
+                                      cur_als=kurtosis(ln_als),
+                                      avg_alns=mean(ln_alns),
+                                      med_alns=median(ln_alns),
+                                      sd_alns=sd(ln_alns),
+                                      ses_alns=skewness(ln_alns),
+                                      cur_alns=kurtosis(ln_alns),
+                                      avg_rate=mean(rateNS),
+                                      sd_rate=sd(rateNS),
+                                      n=n())
+df.vis.ia<- data.frame(df.vis)
+df.vis.ia
+# Visualización de distribuciones de datos ln_als y la_alns
+p1 <- ggplot(df, aes(x=ln_als)) +
+  geom_histogram(aes(color=IA,fill=IA),bins =k+1,alpha=0.4 ) + 
+  #  geom_histogram(aes(y=after_stat(count / sum(count)),color=nse5f,fill=nse5f),bins =k+1,alpha=0.4 ) + 
+  labs(title =  "Saludables", 
+       x = "ln(gasto)",
+       y = "Frecuencia") + 
+  theme_classic()
+p1
+p2 <- ggplot(df, aes(x=ln_alns)) +
+  geom_histogram(aes(color=IA,fill=IA),bins =k+1,alpha=0.4 ) + 
+  #  geom_histogram(aes(y=after_stat(count / sum(count)),color=nse5f,fill=nse5f),bins =k+1,alpha=0.4 ) + 
+  labs(title =  "No Saludables", 
+       x = "ln(gasto)",
+       y = "Frecuencia") + 
+  theme_classic()
+p2
+# Gráfica de dos paneles
+figure <- ggarrange(p1, p2, 
+                    labels = c("A","B"),
+                    ncol = 2, nrow = 1)
+annotate_figure(figure)#,
+#                top = text_grob("Distribución del ln_als \n", color = "black", face = "bold", size = 16))
+dev.off()
+#
+# Observaciones
+#
+# 1)  En promedio, los hogares que no padecen de IA gastan más, absoluta y 
+# relativamente, en ALNS que los hogares que padecen IA. PRUEBA
+# DE HIPÓTESIS PENDIENTE
+#
+# 2) La distribución del ln_ALS y ln_ALNS sigue los mismos patrones descritos 
+# respecto al NSE y refin.
+#
+#
+# Una vez analizados los patrones de gasto en ALS y ALNS como función de cada una
+# de las tres variables de interés, de manera individual, ahora realizaremos un 
+# análisis comparativo de los patrones de consumo para cada una de las 20 combinaciones
+# que resultan de considerar en conjunto dichas tres variables de interés:
+#
+# IA (2 opciones) x refin (2 opciones) x NSE5F (5 opciones)= 20 combinaciones
+#
+# Con este objetivo necesitamos agrupar los datos de los hogares en cada una 
+# de las combinaciones. Para ello,seleccionamos los datos de interes usando select(),
+# luego agrupamos conforme a las variables refin, IA y nse5f,  usando la función
+# group_by() y calculamos los observables deseados mediante la función summarise(). 
+# Por último, ordenaremos los datos en función del nse5f para fines de análisis.
+#
+#
+df.est<-df%>%select(nse5f,refin,IA,ln_als,ln_alns)%>%group_by(refin,IA,nse5f)%>%summarize(avg_als=mean(ln_als),
+                                                                                          med_als=median(ln_als),
+                                                                                          sd_als=sd(ln_als),
+                                                                                          ses_als=skewness(ln_als),
+                                                                                          cur_als=kurtosis(ln_als),
+                                                                                          avg_alns=mean(ln_alns),
+                                                                                          med_alns=median(ln_alns),
+                                                                                          sd_alns=sd(ln_alns),
+                                                                                          ses_alns=skewness(ln_alns),
+                                                                                          cur_alns=kurtosis(ln_alns))%>%arrange(nse5f)
+df.est<-data.frame(df.est)
+df.est
+View(df.est)
+#
+# Conclusiones:
+#
+# 1) En general, para las 20 diferentes combinaciones de categorias asociadas a 
+# IA,NSEF5,REFIN, las medidades de tendencia central coinciden y presentan baja 
+# dispersión. Lo anterior nos habla de una posible distribución normal.
+#
+# 2) En el caso de la distribución del ln de los gastos en alimentos saludables,
+#
+df.est%>%filter(ses_als>0) # No hay distribuciones con sesgo s>0
+df.est%>%filter(cur_als<3) # No hay distribuciones con curtosis k<3
+# Todas las distribuciones presentan un sesgo a la izquierda (s<0) y curtosis 
+# mayor a 3 (leptocúrticas). Esto nos habla de que los patrones de gasto en 
+# alimentos saludables son bastante homogéneos entre los diferentes hogares 
+# pertenecientes a la misma categoría.
+#
+#
+# 3) En el caso de la distribución del ln de los gastos en alimentos NO saludables,
+#
+df.est%>%filter(ses_alns>0) # Hay 16 distribuciones con sesgo s>0
+df.est%>%filter(cur_alns<3) # Hay 18 distribuciones con curtosis k<3
+# La mayoria de las distribuciones presentan un sesgo a la derecha (s>0) y curtosis 
+# menor a 3 (platocúrticas), aunque bastante cercanas al umbral k=3 (mesocúrticas).
+# Esto nos habla de que los patrones de gasto en alimentos saludables son menos 
+# homogéneos entre los diferentes hogares pertenecientes a la misma categoría en
+# comparación con el patrón de gasto en alimentos saludables.
+#
+#
+# Para analizar una a una podríamos seguir el siguiente procedimiento:
+#
+# Ejemplo: Distribución de gasto en alimentos saludables para refin=No IA=NO nse5f=Alto 
+#
+# 1) Extraer datos usando la función filter(), aplicada sobre las variables 
+# refin, IA y nse5f,
+df.est1<-df%>%filter(refin=="No",IA=="No",nse5f=="Alto")%>%select(ln_alns)
+# 2) Calcular el número de categorias e intervalos para las mismas
+#
+#Numero de clases usando regla de raiz, redondeando hacia arriba
+k1 = ceiling(sqrt(length(df.est1$ln_alns))) 
+#Numero de clases usando Sturges, redondeando hacia arriba
+k2 = ceiling(1+3.3*log10(length(df.est1$ln_alns))) 
+k1;k2
+# Elegimos Sturges
+k<-k2
+#calcular ancho de bin/clase
+ac = (max(df.est1$ln_alns)-min(df.est1$ln_alns))/k
+bins <- seq(min(df.est1$ln_alns),max(df.est1$ln_alns),by=ac)
+#
+# Creación de histograma
+hist(df.est1$ln_alns,breaks=bins,
+     main="Distribución del ln del gasto en ALNS",
+     sub="refin = No, IA = No, nse5f = Alto",
+     xlab="x",ylab="f(x)",freq=FALSE)
+# Comparación con distribución normal asociada a las medidadas de 
+# tendencia central de la muestra
+mean=mean(df.est1$ln_alns)
+sd=sd(df.est1$ln_alns)
+x <- seq(-4, 4, 0.01)*sd + mean
+curve(dnorm(x, mean = mean, sd = sd), from = mean-4*sd, to = mean+4*sd, 
+      col='blue', main = "Densidad de Probabilidad Normal",
+      ylab = "f(x)", xlab = "X",add=TRUE)
+#
+# Conclusión:
+# Se comprueba que los datos siguen una distribución normal para esta combinación. 
+#
+# Sin embargo hacerlo una a una podría resultar algo cansado. 
+#
+# Para el resto de distribuciones, podemos usar igualmente filter(), pero en esta 
+# ocasión solo sobre las variables refin y IA. Dejando la variable nse5f como 
+# argumento para establecer el esquema de color en una gráfica comparativa de las 
+# distribuciones de gastos como funcion de los diferentes niveles socioeconomicos
+# usando la libreria ggplt2. Así mismo, usamos la librería ggpubr para agrupar 
+# varios paneles en una sola gráfica
+#
+# Caso ALS
+#
+#
+# refin=No IA=NO
+#
+
+df.est2<-df%>%filter(refin=="No",IA=="No")%>%select(ln_als,nse5f)
+p1 <- ggplot(df.est2, aes(x=ln_als)) +
+  geom_histogram(aes(color=nse5f,fill=nse5f),bins =k+1,alpha=0.4 ) + 
+#  geom_histogram(aes(y=after_stat(count / sum(count)),color=nse5f,fill=nse5f),bins =k+1,alpha=0.4 ) + 
+  labs(title =  "refin = No, IA = No", 
+       x = "ln(gasto)",
+       y = "Frecuencia") + 
+  theme_classic()
+#
+# refin=No IA=Si
+#
+df.est2<-df%>%filter(refin=="No",IA=="Si")%>%select(ln_als,nse5f)
+p2 <- ggplot(df.est2, aes(x=ln_als)) +
+  geom_histogram(aes(color=nse5f,fill=nse5f),bins =k+1,alpha=0.4 ) + 
+  labs(title =  "refin = No, IA = Si ", 
+       x = "ln(gasto)",
+       y = "Frecuencia") + 
+  theme_classic()
+#
+# refin=Si IA=No
+#
+df.est2<-df%>%filter(refin=="Si",IA=="No")%>%select(ln_als,nse5f)
+p3 <- ggplot(df.est2, aes(x=ln_als)) +
+  geom_histogram(aes(color=nse5f,fill=nse5f),bins =k+1,alpha=0.4 ) + 
+  labs(title = "refin = Si, IA = No", 
+       x = "ln(gasto)",
+       y = "Frecuencia") + 
+  theme_classic()
+
+#
+# refin=Si IA=Si
+#
+df.est2<-df%>%filter(refin=="Si",IA=="Si")%>%select(ln_als,nse5f)
+p4 <- ggplot(df.est2, aes(x=ln_als)) +
+  geom_histogram(aes(color=nse5f,fill=nse5f),bins =k+1,alpha=0.4 ) + 
+  labs(title =  "refin = Si, IA = Si", 
+       x = "ln(gasto)",
+       y = "Frecuencia") + 
+  theme_classic()
+#
+figure <- ggarrange(p1, p2, p3,p4, 
+                    labels = c("A", "B", "C","D"),
+                    ncol = 2, nrow = 2)
+annotate_figure(figure,
+                top = text_grob("Distribución del ln_als \n", color = "black", face = "bold", size = 16))
+dev.off()
+#
+# Caso ALNS
+#
+#
+# refin=No IA=NO
+#
+
+df.est2<-df%>%filter(refin=="No",IA=="No")%>%select(ln_alns,nse5f)
+p1 <- ggplot(df.est2, aes(x=ln_alns)) +
+  geom_histogram(aes(color=nse5f,fill=nse5f),bins =k+1,alpha=0.4 ) + 
+  labs(title =  "refin = No, IA = No", 
+       x = "ln(gasto)",
+       y = "Frecuencia") + 
+  theme_classic()
+#
+# refin=No IA=Si
+#
+df.est2<-df%>%filter(refin=="No",IA=="Si")%>%select(ln_alns,nse5f)
+p2 <- ggplot(df.est2, aes(x=ln_alns)) +
+  geom_histogram(aes(color=nse5f,fill=nse5f),bins =k+1,alpha=0.4 ) + 
+  labs(title =  "refin = No, IA = Si ", 
+       x = "ln(gasto)",
+       y = "Frecuencia") + 
+  theme_classic()
+#
+# refin=Si IA=No
+#
+df.est2<-df%>%filter(refin=="Si",IA=="No")%>%select(ln_alns,nse5f)
+p3 <- ggplot(df.est2, aes(x=ln_alns)) +
+  geom_histogram(aes(color=nse5f,fill=nse5f),bins =k+1,alpha=0.4 ) + 
+  labs(title = "refin = Si, IA = No", 
+       x = "ln(gasto)",
+       y = "Frecuencia") + 
+  theme_classic()
+
+#
+# refin=Si IA=Si
+#
+df.est2<-df%>%filter(refin=="Si",IA=="Si")%>%select(ln_alns,nse5f)
+p4 <- ggplot(df.est2, aes(x=ln_alns)) +
+  geom_histogram(aes(color=nse5f,fill=nse5f),bins =k+1,alpha=0.4 ) + 
+  labs(title =  "refin = Si, IA = Si", 
+       x = "ln(gasto)",
+       y = "Frecuencia") + 
+  theme_classic()
+#
+figure <- ggarrange(p1, p2, p3,p4, 
+                    labels = c("A", "B", "C","D"),
+                    ncol = 2, nrow = 2)
+annotate_figure(figure,
+                top = text_grob("Distribución del ln_alns \n",
+                color = "black", face = "bold", size = 16))
+dev.off()
+#
+# Conclusión:
+#
+# En general, la distribución de gastos en las 20 diferentes combinaciones de 
+# categorias parece seguir una distribución normal. En general, se observan 
+# las mismas tendencias que las obsrvadas en el análisis variable por variable.
+#
+# Una vez analizada la distibución de gasto de cada grupo de interés, vamos a 
+# continuar con el análisis descriptivo de los patrones de gasto. Para ello nos
+# enfocaremos en la tendencia (promedio del ln del gasto) del gasto en ALS, ALNS 
+# y el gasto relativo rateNS. Con este fin, seleccionamos datos de interes mediante
+# la función select(), agrupamos conforme a las variables refin, IA y nse5f, usando
+# la función group_by() y calculamos los observables de interés mediante la función 
+# summarise(). Por último, ordenaremos los datos mediante la función arrange()
+# en función del promedio de gastos en alimentos no saludables avg_alns, de forma
+# descendiente para fines de análisis.
+#
+df.est<-df%>%select(nse5f,refin,IA,ln_als,ln_alns,rateNS)%>%group_by(refin,IA,nse5f)%>%summarize(avg_als=mean(ln_als),
+                                                                                                 avg_alns=mean(ln_alns),
+                                                                                                 avg_rate=mean(rateNS))%>%arrange(desc(avg_alns))
+df.est<-data.frame(df.est)
+df.est
+View(df.est)
+# Conclusión:
+df.est%>%filter(avg_alns==max(avg_alns)) # categoria que más gasta
+df.est%>%filter(avg_alns==min(avg_alns)) # categoria que menos gasta
+# En terminos absolutos, los hogares que más gastan en alimentos no saludables
+# son los de nivel socio económico alto sin ingresos extra y que no padecen IA. 
+# Los que menos gastan en alimentos no saludables son los hogares de NSEf5 bajo,
+# sin ingresos extra y que presentan IA.
+#
+#
+# Conclusiones:
+#
+# 1) De lo anterior, se encuentra que los hogares que pertenecen a la categoria 
+# refin=No, IA=No y NSEF5=Alto son los que más gastan en alimentos no saludables 
+# en comparación al gasto en alimentos saludables. Mientras que los hogares que 
+# pertenecen a la categoria refin=Si, IA=Si, NSEF5=Bajo son quienes destinan menos dinero
+# al consumo de alimentos no saludables en relación al consumo de alimentos saludables.
+#
+# 2) En general se puede ver que, contrario a la opinión publica, los hogares con 
+# mejor nivel socioeconómico destinan más dinero al consumo de alimentos NO 
+# saludables en comparación al usado para el consumo de alimentos saludables, 
+# absuluta y relativamente
+#
+# Ahora analizaremos, dentro de cada NSEF5, que hogares priorizan más sus gastos 
+# en alimentos saludables.
+#
+# Para ello, reordenaremos el dataframe anterior, usando arrange(), primero de 
+# forma descendiente en nse5f y luego ascendente en rateNS.
+df.estf%>%arrange(desc(nse5f),rateNS)
 #
 # Conclusión: 
-# Para todo los niveles socioeconómicos, los hogares con ingresos extra y que padecen IA son quienes
-# PRIORIZAN MÁS el consumo de alimentos SALUDABLES sobre los NO saludables.
+# Para todos los NSE, se encuentra que los hogares que padecen IA priorizan el 
+# gasto en ALS sobre los ALNS, los que reciben ingresos extra un poco más que 
+# los que no.
 "
 3) Calcula probabilidades que nos permitan entender el problema en México
 "
