@@ -3,7 +3,8 @@
 
 # Autores ✒️
 
-## Equipo 5 BEDU
+**Equipo 5 BEDU**
+
 * **Miguel** - *Desarrollo y Análisis* - [Miguel](https://github.com/)
 * **Jose** - *Desarrollo y Análisis* - [José](https://github.com/)
 * **Oswaldo** - *Desarrollo y Análisis* - [Oswaldo](https://github.com/)
