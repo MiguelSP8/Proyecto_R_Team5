@@ -5,7 +5,20 @@ En este documento se describen las principales conclusiones asociadas con el an�
 Como punto de partida, se realizó una limpieza de datos, seguida de un análisis exploratorio, en busca de entender la muestra de datos con la que se está trabajando. En la figura 1 se muestran los resultados obtenidos a partír de esté análisis exploratorio.
 
 ![**Figura 1:** Resultados del análisis exploratorio de datos.](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/analisis1.png "Figura 1: Resultados del análisis exploratorio de datos")
-**Figura 1:** Resultados del análisis exploratorio de datos. 
+**Figura 1:** Resultados del análisis exploratorio de datos. Distribución de hogares por A) Nivel socioeconómico, B) zona geográfica, C) percepción de ingresos extra, D) sexo del jefe del hogar, E) insuficiencia alimentaria, F) número de personas que conforman el hogar, G) Edad y H) años de educación del jefe de familia.
+
+#### Conclusiones ⚙️
+```
+* La distribución de hogares conforme al nivel socioeconómico es aproximadamente uniforme, aumenando ligeramente hacia
+# los niveles socioeconómicos altos. 
+* Hay aproximadamente una razon de 2:1 hogares en zona urbana respecto a los hogares en zona rural. 
+* Aproximadamente 3 de cada 4 hogares no percibe ingresos extra. 
+* De la misma forma, cerca de 3 de cada 4 hogares tiene jefe de hogar hombre. 
+* Existe una proporción mayor al 2:1 en los hogares que precentan insuficiencia alimentaria respecto alos que no. 
+* La distribución del número de habitantes en el hogar es cercana a una normal, con un sesgo a la derecha (distribución tipo gamma). Algo similar se observa en la distribución de edad del jefe de familia. 
+* La distribución de los años de estudio es algo más complicada de entender, los picos coinciden con la culminación de algún grado, siendo los maás frecuentes los asociados a la secundaria y preparatoria.
+``
+Una vez que se ha presentado un análisis sobre la composión de la muestra,  es momento de hablar sobre los patrones de gasto en alimentos saludables y no saludables, como función de algunos determinantes socioeconómicos de intrés.
 
 ## Patrones de gasto como función de nivel socioeconómico, ingresos extra e insuficiencia alimentaria
 
