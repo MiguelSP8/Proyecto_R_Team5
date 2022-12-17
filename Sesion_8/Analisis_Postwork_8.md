@@ -291,11 +291,9 @@ significa que necesitamos hacer un modelo de regresión logística.
 
 Recordando:
 
-_La regresión lineal es una técnica de modelado estadístico que se emplea para describir una variable de respuesta continua 
-como una función de una o varias variables predictoras. Puede ayudar a comprender y predecir el comportamiento de distintos 
-fenómenos aleatorios._
+_La regresión logística es un tipo de análisis de regresión utilizado para predecir el resultado de una variable categórica en función de las variables independientes o predictoras._
 
-_Este modelo describe la relación entre una variable dependiente como una función de una o varias variables independientes. El método más utlizado para su estimación es el de Mínimos Cuadrados Ordinarios, el cual consiste en minizar la suma de los residuos al cuadrado, siendo el residuo la diferencia que hay entre el valor observado y el valor pronosticado por una propuesta de modelo._
+_Es útil para modelar la probabilidad de un evento ocurriendo en función de otros factores._
 
 **Análisis: 📋**
 
