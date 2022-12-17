@@ -109,12 +109,12 @@ IA (2 opciones) x refin (2 opciones) x NSE5F (5 opciones)
 ```
 En las figuras 1.4 y 1.5, se presenta la distribución del gasto en alimentos saludables y no saludables, respectivamente, para las 20 diferentes combinaciones, agrupando las distribuciones de acuerdo al nivel socioeconómico. Mediante el analisis de las medidas de tendencia central, dispersión estándar (dataframe no presentado) y el resto de observables analizados, así como a través de las gráficas antes mencionadas, se puede notar que las distribuciones de datos ordenados mediante estos 20 diferentes grupos, tiene las mismas características que las descritas en el análisis descriptivo conforme a cada variable individual (ver información en subsecciones anteriores).
 <p align="center" width="100%">
-    <img width="100%" src="https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/als.png">
+    <img width="60%" src="https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/als.png">
 </p>
 **Figura 1.4:** Distribución del logaritmo natural del gasto en alimentos saludables como función de la IA, NSE y la disponibilidad de ingresos extra.
 
 <p align="center" width="100%">
-    <img width="100%" src="https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/alns.png">
+    <img width="60%" src="https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/alns.png">
 </p>
 **Figura 1.5:** Distribución del logaritmo natural del gasto en alimentos NO saludables como función de la IA, NSE y la disponibilidad de ingresos extra.
 
