@@ -2,37 +2,65 @@
 
 En este documento se describen las principales conclusiones asociadas con el análisis de patrones de gasto en alimentos saludables y no saludables, como función de observables estadísticos de interés como el *nivel socioeconómico*, la percepción  de *ingresos extra* y el riesgo de padecer *insuficiencia alimentaria*. Así mismo, se presentan las principales conclusiones extraídas del análisis de un modelo de regresión logístico utilizado para encontrar los parámetros socioeconómicos determinantes para padecer o no insuficiencia alimentaria. 
 
-Como punto de partida, se realizó una limpieza de datos, seguida de un análisis exploratorio, en busca de entender la muestra de datos con la que se está trabajando. En la figura 1 se muestran los resultados obtenidos a partír de esté análisis exploratorio.
+Tenemos información de un extracto de la Encuesta Nacional de Salud y Nutrición (2012) levantada por el Instituto Nacional de Salud Pública en México. En dicha base de datos se presenta información sonre el nivel socioeconómico (nse5f), el área geográfica (area), el número de personas en el hogar (nompeho), la disponibilidad de ingresis extra (refin), la edad (edadjef) y el sexo (sexojef) del jefe de familia así como sus años de educación (añosedu). También hay información sobre si el hogar presenta insuficiencia alimentaria (IA) y sobre el logaritmo natural del gasto de cada hogar en alimentos saludables (ln_als) y no saludables (ln_alns). Como punto de partida, se realizó una limpieza de datos, seguida de un análisis exploratorio, en busca de entender la muestra de datos con la que se está trabajando. En la figura 1 se muestran los resultados obtenidos a partír de esté análisis exploratorio.
 
 ![**Figura 1:** Resultados del análisis exploratorio de datos.](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/analisis1.png "Figura 1: Resultados del análisis exploratorio de datos")
 **Figura 1:** Resultados del análisis exploratorio de datos. Distribución de hogares por A) Nivel socioeconómico, B) zona geográfica, C) percepción de ingresos extra, D) sexo del jefe del hogar, E) insuficiencia alimentaria, F) número de personas que conforman el hogar, G) Edad y H) años de educación del jefe de familia.
 
-#### Conclusiones ⚙️
-```
-* La distribución de hogares conforme al nivel socioeconómico es aproximadamente uniforme, aumenando ligeramente hacia los niveles socioeconómicos altos. 
-* Hay aproximadamente una razon de 2:1 hogares en zona urbana respecto a los hogares en zona rural. 
-* Aproximadamente 3 de cada 4 hogares no percibe ingresos extra. 
-* De la misma forma, cerca de 3 de cada 4 hogares tiene jefe de hogar hombre. 
-* Existe una proporción mayor al 2:1 en los hogares que precentan insuficiencia alimentaria respecto alos que no. 
-* La distribución del número de habitantes en el hogar es cercana a una normal, con un sesgo a la derecha (distribución tipo gamma). Algo similar se observa en la distribución de edad del jefe de familia. 
-* La distribución de los años de estudio es algo más complicada de entender, los picos coinciden con la culminación de algún grado, siendo los maás frecuentes los asociados a la secundaria y preparatoria.
-```
-Una vez que se ha presentado un análisis sobre la composión de la muestra,  es momento de hablar sobre los patrones de gasto en alimentos saludables y no saludables, como función de algunos determinantes socioeconómicos de intrés.
+#### Observaciones ⚙️
+
+- La distribución de hogares conforme al nivel socioeconómico es aproximadamente uniforme, aumenando ligeramente hacia los niveles socioeconómicos altos. 
+- Hay aproximadamente una razon de 2:1 hogares en zona urbana respecto a los hogares en zona rural. 
+- Aproximadamente 3 de cada 4 hogares no percibe ingresos extra. 
+- De la misma forma, cerca de 3 de cada 4 hogares tiene jefe de hogar hombre. 
+- Existe una proporción mayor al 2:1 en los hogares que precentan insuficiencia alimentaria respecto alos que no. 
+- La distribución del número de habitantes en el hogar es cercana a una normal, con un sesgo a la derecha (distribución tipo gamma). Algo similar se observa en la distribución de edad del jefe de familia. 
+- La distribución de los años de estudio es algo más complicada de entender, los picos coinciden con la culminación de algún grado, siendo los maás frecuentes los asociados a la secundaria y preparatoria.
+
+En función del análisis anterior, se concluyó que hablar del gasto en términos absolutos no es del todo concluyente ya que el hecho de percibir más ingresos implica la posibilidad de ejercer gastos mayores tanto en alimentos saudables como no saludables. Tomando en cuenta lo anterior, se definió la variable **rateNS=ln_alns/ln_als**, como la razón entre el gasto en alimentos no saludables y saludables. Esta nueva observable nos habla más de la toma de decisión en cuanto al uso de los recursos disponibles en cada hogar que de la magnitud de sus gastos.
 
 ## Patrones de gasto como función de nivel socioeconómico, ingresos extra e insuficiencia alimentaria
 
+Una vez que se ha presentado un análisis sobre la composión de la muestra, es momento de hablar sobre los patrones de gasto en alimentos saludables y no saludables, como función de algunos determinantes socioeconómicos de intrés. Con este fin, centramos nuestro estudio en el análisis de las variables **ln_als** y **ln_alns**, así como en la nueva variable **rateNS**. Nuestras observaciones están basados en el estudio de las medidas de tendencia central, dispersión estadística y otros observables de interés:
+
+- media: avg_als, avg_alns, avg_rate
+- mediana: med_als, med_alns
+- dispersión estándar: sd_als, sd_alns, sd_rate
+- sesgo en la distribución: ses_als, ses_alns
+- curtósis: cur_als, cur_alns
+- conteo de frecuencia: n
+
+
 ### Nivel socieconómico
-Texto 
 
-![**Figura 1:** DateFrame NSE](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/DF_NSE.png "Figura 1: DataFrame del análisis como función del nivel socioeconómico")
+En el siguiente data frame se presentan los resultados obtenidos respecto el análisis de los patrones de gasto en alimentos saludables y no saludables como función del nivel socioeconómico (NSE) al que pertenece cada hogar.
 
-1. En terminos absolutos, los hogares que más gastan en alimentos no saludables son los de nivel socio económico alto, sin ingresos extra y que no padecen insuficiencia alimentaria. 
+![DateFrame NSE](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/DF_NSE.png "Figura 1: DataFrame del análisis como función del nivel socioeconómico")
 
-2. Los hogares que menos gastan en alimentos no saludables son los hogares de nivel socioeconómico bajo, sin ingresos extra y que además padecen insuficiencia alimentaria.
+Con base en los resultados ariba presentados, podemos realizar las siguientes observaciones:
 
-3. En general, para las 20 diferentes combinaciones de categorias asociadas a insuficiencia alimentaria (IA), Nivel socioeconómico (NSE5F) y percepción de ingresos extra (REFIN), las medidades de tendencia central coinciden, lo cual nos habla de una posible distribución normal.
+- El promedio del ln del gasto, tanto en alimentos saludables (ALS) como en los no saludables (ALNS) y en la razon entre ellos, aumenta conforme mejora el nivel socioeconómico.
+- Las medidas de tendencia central coinciden, en lo general, tanto para ln del gasto en ALS como para el ln del gasto en ALNS, lo que nos habla de distribuciones cercanas a una gaussiana.
+- Para todos los niveles socioeconómicos, se presenta sesgo a la izquierdo (s<0) en la distribución del ln(ALS) y una curtosis mayor a 3 (leptocúrtica). Esto nos habla de una cierta homogeneidad en el patrón de gasto en ALS de los hogares que pertenecen al mismo NSE. Esto se puede apreciar en la gráfica que se presenta en la figura 2 (A).
+- Para todos los NSE, se presenta sesgo a la derecha (s>0) en la distribución del ln(ALNS) y una curtosis menor y aproximadamente 3 (mesocúrtica). Esto nos dice que el patrón de gasto en ALNS de los hogares que pertenecen al mismo NSE es menos uniforme en comparación con el patrón de gasto en ALS. Esto se puede apreciar en la gráfica que se presenta en la figura 2 (B).
 
-4. Considerando que hablar del gasto en términos ABSOLUTOS no es del todo concluyente, ya que el hecho de percibir más ingresos implica la posibilidad de ejercer gastos mayores tanto en alimentos saudables como no saludables, se calculó la razón entre el gasto en alimentos no saludables y saludables, la cual nos proporciona información sobre de la toma de decisión en cuanto al uso de los recursos disponibles en cada hogar. La principal conclusión de este análisis es que, en general, se puede ver que, **contrario a la opinión pública**, los hogares con mejor nivel socioeconómico destinan más dinero al consumo de alimentos NO saludables en comparación con el dinero usado para el consumo de alimentos saludables.
+![**Figura 2:** Distribución de gastos como función del nivel socioeconómico](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/DF_NSE.png "Figura 2: Distribución del logaritmo natural como función del nivel socioeconómico")
+**Figura 2:** Distribución del logaritmo natural como función del nivel socioeconómico.
+
+#### Conclusiones generales:
+
+- Contrario a la opinión publica, en promedio, los hogares de NSE altos gastan más en ALNS que los hogares pertenecientes a los NSE bajos, no solo en términos absolutos, sino también en términos relativos con relación a su gasto en ALS (Prueba de hipótesis pendiente).
+- Los patrones de gasto en ALS son más homogéneos que los patrónes de gasto en ALNS.
+
+
+
+ A
+ 
+ 
+- En terminos absolutos, los hogares que más gastan en alimentos no saludables son los de nivel socio económico alto, sin ingresos extra y que no padecen insuficiencia alimentaria. 
+- Los hogares que menos gastan en alimentos no saludables son los hogares de nivel socioeconómico bajo, sin ingresos extra y que además padecen insuficiencia alimentaria.
+- En general, para las 20 diferentes combinaciones de categorias asociadas a insuficiencia alimentaria (IA), Nivel socioeconómico (NSE5F) y percepción de ingresos extra (REFIN), las medidades de tendencia central coinciden, lo cual nos habla de una posible distribución normal.
+- Considerando que hablar del gasto en términos ABSOLUTOS no es del todo concluyente, ya que el hecho de percibir más ingresos implica la posibilidad de ejercer gastos mayores tanto en alimentos saudables como no saludables, se calculó la razón entre el gasto en alimentos no saludables y saludables, la cual nos proporciona información sobre de la toma de decisión en cuanto al uso de los recursos disponibles en cada hogar. La principal conclusión de este análisis es que, en general, se puede ver que, **contrario a la opinión pública**, los hogares con mejor nivel socioeconómico destinan más dinero al consumo de alimentos NO saludables en comparación con el dinero usado para el consumo de alimentos saludables.
 
 5. También se encontró que para todos los niveles socioeconómicos, los hogares con ingresos extra y que padecen insuficiencia alimentaria son quienes **priorizan más** el consumo de alimentos **saludables** sobre los **no saludables**.
 
