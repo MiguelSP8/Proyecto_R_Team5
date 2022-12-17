@@ -302,12 +302,11 @@ _Es útil para modelar la probabilidad de un evento ocurriendo en función de ot
 
 1.- Dentro del análisis de correlaciones entre variables numericas, se determinó que no hay evidencia de correlación entre las variables numéricas que describen el problema.
 
+![**Figura 5.1:** Análisis de correlaciones entre variables numericas.](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/5_1_boxplot.PNG "Figura 5.1: Análisis de correlaciones entre variables numericas.")
+
+**Figura 5.1:** Análisis de correlaciones entre variables numericas.
+
 2.- De acuerdo al modelo de regresión logística y utilizando todas las variables disponibles se plantea lo siguiente: 
-
-![**Figura 5.1:** Modelo de regresión logística utilizando todas las variables](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/5_1_boxplot.PNG "Figura 5.1: Modelo de regresión logística utilizando todas las variables")
-
-**Figura 5.1:** Modelo de regresión logística utilizando todas las variables
-
 
     * Planteamiento de hipótesis: 📋*
         * H_0: Bi = 0
