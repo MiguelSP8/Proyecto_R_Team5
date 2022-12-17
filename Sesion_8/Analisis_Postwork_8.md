@@ -111,11 +111,13 @@ En las figuras 1.4 y 1.5, se presenta la distribución del gasto en alimentos sa
 <p align="center" width="100%">
     <img width="60%" src="https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/als.png">
 </p>
+
 **Figura 1.4:** Distribución del logaritmo natural del gasto en alimentos saludables como función de la IA, NSE y la disponibilidad de ingresos extra.
 
 <p align="center" width="100%">
     <img width="60%" src="https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/alns.png">
 </p>
+
 **Figura 1.5:** Distribución del logaritmo natural del gasto en alimentos NO saludables como función de la IA, NSE y la disponibilidad de ingresos extra.
 
 En consideración de lo anterior, el siguiente data frame solo se presentan los resultados asociados con la media de las variables de interés (ln_als, ln_alns y rateNS) para la descripción de los patrones de gasto, agrupados en forma descendiente respecto al gasto relativo entre ALNS y ALS.
