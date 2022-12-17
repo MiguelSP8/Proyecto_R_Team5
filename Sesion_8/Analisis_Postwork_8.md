@@ -269,6 +269,7 @@ Con niveles de confianza de 90%,95% y 99%, existe evidencia estadística para re
 Previo a la demostración visualizamos las 2 variables de estudio por medio de boxplot
 
 ![**Figura 4.5:** Boxplot hogares clasificados por nivel socioeconómico y comparados con la razón de ALNS/ALS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/4_5_boxplot.PNG "Figura 4.5: Boxplot hogares clasificados por nivel socioeconómico y comparados con la razón de ALNS/ALS")
+
 **Figura 4.5:** Boxplot hogares clasificados por nivel socioeconómico y comparados con la razón de ALNS/ALS.
 
 **Planteamiento de hipótesis:📋**
