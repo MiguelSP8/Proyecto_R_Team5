@@ -428,7 +428,7 @@ dev.off()
 # Por último, ordenaremos los datos en función del nse5f para fines de análisis.
 #
 #
-df.est<-df%>%select(nse5f,refin,IA,ln_als,ln_alns)%>%group_by(refin,IA,nse5f)%>%summarize(avg_als=mean(ln_als),
+df.est<-df%>%select(nse5f,refin,IA,ln_als,ln_alns,rateNS)%>%group_by(refin,IA,nse5f)%>%summarize(avg_als=mean(ln_als),
                                                                                           med_als=median(ln_als),
                                                                                           sd_als=sd(ln_als),
                                                                                           ses_als=skewness(ln_als),
@@ -437,7 +437,10 @@ df.est<-df%>%select(nse5f,refin,IA,ln_als,ln_alns)%>%group_by(refin,IA,nse5f)%>%
                                                                                           med_alns=median(ln_alns),
                                                                                           sd_alns=sd(ln_alns),
                                                                                           ses_alns=skewness(ln_alns),
-                                                                                          cur_alns=kurtosis(ln_alns))%>%arrange(nse5f)
+                                                                                          cur_alns=kurtosis(ln_alns),
+                                                                                          avg_rate=mean(rateNS),
+                                                                                          sd_rate=sd(rateNS),
+                                                                                          n=n())%>%arrange(nse5f)
 df.est<-data.frame(df.est)
 df.est
 View(df.est)
