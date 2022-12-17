@@ -311,9 +311,9 @@ _Es útil para modelar la probabilidad de un evento ocurriendo en función de ot
 
 **Observaciones: 📋**
 
-| Variables | p-value | Rechaza Ho 95% |
+| Variables | p-value | Estadístico para el modelo |
 | --- | --- | --- |
-| intercepto | < 2x10^-16 | Si |
+| intercepto | < 2x10^-16 | Si | 
 | nse5fMedio bajo | 1.97x10^-6 | Si |
 | nse5fMedio | < 2e-16 | Si |
 |nse5fMedio alto | < 2e-16 | Si |
