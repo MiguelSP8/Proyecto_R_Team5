@@ -278,7 +278,7 @@ Previo a la demostración visualizamos las 2 variables de estudio por medio de b
 
 **Conclusiones ⚙️**
 
-Una vez realizado el análisis por medio de la función **anova()**, por cuestiones de categorízación de la variables NSE, se concluye lo siguiente:
+Una vez realizado el análisis por medio de la función **aov(anova)**, por cuestiones de categorízación de la variables NSE, se concluye lo siguiente:
 
 Con niveles de confianza de 90%,95% y 99%, existe evidencia estadística para rechazar Ho, por lo tanto podemos asumir que al menos uno de los promedios es diferente, esto implica que el nivel socioeconómico si tiene efecto sobre la razón entre el gasto en ALNS y ALS.
 
