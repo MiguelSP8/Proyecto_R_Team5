@@ -123,7 +123,7 @@ En las figuras 1.4 y 1.5, se presenta la distribución del gasto en alimentos sa
 
 En consideración de lo anterior, el siguiente data frame solo se presentan los resultados asociados con la media de las variables de interés (ln_als, ln_alns y rateNS) para la descripción de los patrones de gasto, agrupados en forma descendiente respecto al gasto relativo entre ALNS y ALS.
 
-![DateFrame NSE, IA, refin](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/DF_ordn.png "Figura 1: DataFrame del análisis conjunto de las variables NSE, IA y refin")
+![DateFrame NSE, IA, refin](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/DF_ord.png "Figura 1: DataFrame del análisis conjunto de las variables NSE, IA y refin")
 
 Con base en los resultados ariba presentados, podemos realizar las siguientes observaciones:
 
