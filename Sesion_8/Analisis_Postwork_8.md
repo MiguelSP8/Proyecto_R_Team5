@@ -12,7 +12,7 @@
 
 En este documento se describen las principales conclusiones asociadas con el análisis de patrones de gasto en alimentos saludables y no saludables de los hogares mexicanos, como función de observables estadísticos de interés como el *nivel socioeconómico*, la percepción  de *ingresos extra* y el riesgo de padecer *insuficiencia alimentaria*. Así mismo, se presentan las principales conclusiones extraídas del análisis de un modelo de regresión logístico, utilizado para encontrar los parámetros socioeconómicos determinantes para que un hogar padezca o no insuficiencia alimentaria. 
 
-Tenemos información de un extracto de la Encuesta Nacional de Salud y Nutrición (2012) levantada por el Instituto Nacional de Salud Pública en México. En dicha base de datos se presenta información sonre el nivel socioeconómico (nse5f), el área geográfica (area), el número de personas en el hogar (numpeho), la disponibilidad de ingresis extra (refin), la edad (edadjef) y el sexo (sexojef) del jefe de familia así como sus años de educación (añosedu). También hay información sobre si el hogar presenta insuficiencia alimentaria (IA) y sobre el logaritmo natural del gasto de cada hogar en alimentos saludables (ln_als) y no saludables (ln_alns). Como punto de partida, se realizó una limpieza de datos, seguida de un análisis exploratorio, en busca de entender la muestra de datos con la que se está trabajando. En la figura 1 se muestran los resultados obtenidos a partír de esté análisis exploratorio.
+Tenemos información de un extracto de la Encuesta Nacional de Salud y Nutrición (2012) levantada por el Instituto Nacional de Salud Pública en México. En dicha base de datos se presenta información sonre el nivel socioeconómico (nse5f), el área geográfica (area), el número de personas en el hogar (numpeho), la disponibilidad de ingresos extra (refin), la edad (edadjef) y el sexo (sexojef) del jefe de familia así como sus años de educación (añosedu). También hay información sobre si el hogar presenta insuficiencia alimentaria (IA) y sobre el logaritmo natural del gasto de cada hogar en alimentos saludables (ln_als) y no saludables (ln_alns). Como punto de partida, se realizó una limpieza de datos, seguida de un análisis exploratorio, en busca de entender la muestra de datos con la que se está trabajando. En la figura 1 se muestran los resultados obtenidos a partír de esté análisis exploratorio.
 
 ![**Figura 1:** Resultados del análisis exploratorio de datos.](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/analisis1.png "Figura 1: Resultados del análisis exploratorio de datos")
 **Figura 1:** Resultados del análisis exploratorio de datos. Distribución de hogares por A) Nivel socioeconómico, B) zona geográfica, C) percepción de ingresos extra, D) sexo del jefe del hogar, E) insuficiencia alimentaria, F) número de personas que conforman el hogar, G) Edad y H) años de educación del jefe de familia.
@@ -20,10 +20,10 @@ Tenemos información de un extracto de la Encuesta Nacional de Salud y Nutrició
 #### Observaciones
 
 - La distribución de hogares conforme al nivel socioeconómico es aproximadamente uniforme, aumenando ligeramente hacia los niveles socioeconómicos altos. 
-- Hay aproximadamente una razon de 2:1 hogares en zona urbana respecto a los hogares en zona rural. 
+- Hay aproximadamente una razon de 2:1 de hogares en zona urbana respecto a los hogares en zona rural. 
 - Aproximadamente 3 de cada 4 hogares no percibe ingresos extra. 
 - De la misma forma, cerca de 3 de cada 4 hogares tiene jefe de hogar hombre. 
-- Existe una proporción mayor al 2:1 en los hogares que precentan insuficiencia alimentaria respecto alos que no. 
+- Existe una proporción mayor al 2:1 en los hogares que precentan insuficiencia alimentaria respecto a los que no. 
 - La distribución del número de habitantes en el hogar es cercana a una normal, con un sesgo a la derecha (distribución tipo gamma). Algo similar se observa en la distribución de edad del jefe de familia. 
 - La distribución de los años de estudio es algo más complicada de entender, los picos coinciden con la culminación de algún grado, siendo los maás frecuentes los asociados a la secundaria y preparatoria.
 
@@ -51,7 +51,7 @@ Con base en los resultados ariba presentados, podemos realizar las siguientes ob
 
 - El promedio del ln del gasto, tanto en alimentos saludables (ALS) como en los no saludables (ALNS) y en la razon entre ellos, aumenta conforme mejora el nivel socioeconómico.
 - Las medidas de tendencia central coinciden, en lo general, tanto para ln del gasto en ALS como para el ln del gasto en ALNS, lo que nos habla de distribuciones cercanas a una gaussiana.
-- Para todos los niveles socioeconómicos, se presenta sesgo a la izquierdo (s<0) en la distribución del ln(ALS) y una curtosis mayor a 3 (leptocúrtica). Esto nos habla de una cierta homogeneidad en el patrón de gasto en ALS de los hogares que pertenecen al mismo NSE. Esto se puede apreciar en la gráfica que se presenta en la figura 1.1 (A).
+- Para todos los niveles socioeconómicos, se presenta sesgo a la izquierda (s<0) en la distribución del ln(ALS) y una curtosis mayor a 3 (leptocúrtica). Esto nos habla de una cierta homogeneidad en el patrón de gasto en ALS de los hogares que pertenecen al mismo NSE. Esto se puede apreciar en la gráfica que se presenta en la figura 1.1 (A).
 - Para todos los NSE, se presenta sesgo a la derecha (s>0) en la distribución del ln(ALNS) y una curtosis menor y aproximadamente 3 (mesocúrtica). Esto nos dice que el patrón de gasto en ALNS de los hogares que pertenecen al mismo NSE es menos uniforme en comparación con el patrón de gasto en ALS. Esto se puede apreciar en la gráfica que se presenta en la figura 1.1 (B).
 
 ![**Figura 1.1:** Distribución de gastos como función del nivel socioeconómico](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/NSE.png "Figura 2: Distribución del logaritmo natural del gasto en alimentos saludables y no saludables como función del nivel socioeconómico")
@@ -72,7 +72,7 @@ Con base en los resultados ariba presentados, podemos realizar las siguientes ob
 
 - En promedio, los hogares que perciben ingresos extra gastan más dinero en ALS que los hogares sin ingresos extra.
 - Por el contrario, en promedio, los hogares que perciben ingresos extra gastan menos, en terminos absolutos y relativos, en ALNS que los hogares sin ingresos extra.
-- La distribución del gasto, ln_ALS y ln_ALNS, sigue los mismos patrones descritos respecto al NSE, como puede apreciarse en los paneles A y B de la figura 1.2.
+- La distribución del gasto, ln_als y ln_alns, sigue los mismos patrones descritos respecto al NSE, como puede apreciarse en los paneles A y B de la figura 1.2.
 
 ![**Figura 1.2:** Distribución de gastos como función de la percepción de ingresos extra](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/refin.png "Figura 2: Distribución del logaritmo natural del gasto en alimentos saludables y no saludables como función de la percepción de ingresos extra")
 **Figura 1.2:** Distribución del logaritmo natural del gasto en alimentos saludables y no saludables como función de la percepción de ingresos extra.
@@ -98,22 +98,26 @@ Con base en los resultados ariba presentados, podemos realizar las siguientes ob
 
 #### Conclusiones (insuficiencia alimentaria):
 
-- Los hogares que padecen insuficiencia laimentaria destinan más recursos al consumo de ALNS que los hogares que no padecen IA (Prueba de hipótesis pendiente).
+- Los hogares que padecen insuficiencia alimentaria destinan más recursos al consumo de ALNS que los hogares que no padecen IA (Prueba de hipótesis pendiente).
 - Los patrones de gasto en ALS son más homogéneos que los patrónes de gasto en ALNS.
 
 ### Análisis conjunto: nivel socioeconómico, insuficiencia laimentaria y disponibilidad de ingresos extra
 
-Una vez analizados los patrones de gasto en ALS y ALNS como función de cada unn de las tres variables de interés, de manera individual, ahora se presentan los resultados de un análisis comparativo de los patrones de consumo para cada una de las 20 combinaciones que resultan de considerar en conjunto dichas tres variables de interés:
+Una vez analizados los patrones de gasto en ALS y ALNS como función de cada una de las tres variables de interés, de manera individual, ahora se presentan los resultados de un análisis comparativo de los patrones de consumo para cada una de las 20 combinaciones que resultan de considerar en conjunto dichas tres variables de interés:
 ```
 IA (2 opciones) x refin (2 opciones) x NSE5F (5 opciones)
 ```
 En las figuras 1.4 y 1.5, se presenta la distribución del gasto en alimentos saludables y no saludables, respectivamente, para las 20 diferentes combinaciones, agrupando las distribuciones de acuerdo al nivel socioeconómico. Mediante el analisis de las medidas de tendencia central, dispersión estándar (dataframe no presentado) y el resto de observables analizados, así como a través de las gráficas antes mencionadas, se puede notar que las distribuciones de datos ordenados mediante estos 20 diferentes grupos, tiene las mismas características que las descritas en el análisis descriptivo conforme a cada variable individual (ver información en subsecciones anteriores).
 
-![**Figura 1.4:** Distribución de gastos en relación al análisis conjunto: ALS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/als.png "Figura 2: Distribución del logaritmo natural del gasto en alimentos saludables como función de la IA, NSE y la disponibilidad de ingresos extra")
+<p align="center" width="100%">
+    <img width="66%" src="https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/als.png">
+</p>
 
 **Figura 1.4:** Distribución del logaritmo natural del gasto en alimentos saludables como función de la IA, NSE y la disponibilidad de ingresos extra.
 
-![**Figura 1.5:** Distribución de gastos en relación al análisis conjunto: ALNS](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/alns.png "Figura 2: Distribución del logaritmo natural del gasto en alimentos saludables como función de la IA, NSE y la disponibilidad de ingresos extra")
+<p align="center" width="100%">
+    <img width="66%" src="https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/alns.png">
+</p>
 
 **Figura 1.5:** Distribución del logaritmo natural del gasto en alimentos NO saludables como función de la IA, NSE y la disponibilidad de ingresos extra.
 
