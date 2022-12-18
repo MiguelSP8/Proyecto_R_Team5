@@ -98,7 +98,7 @@ Con base en los resultados ariba presentados, podemos realizar las siguientes ob
 
 #### Conclusiones (insuficiencia alimentaria):
 
-- Los hogares que padecen insuficiencia alimentaria destinan más recursos al consumo de ALNS que los hogares que no padecen IA (Prueba de hipótesis pendiente).
+- Los hogares que no padecen insuficiencia alimentaria destinan más recursos al consumo de ALNS que los hogares que padecen IA (Prueba de hipótesis pendiente).
 - Los patrones de gasto en ALS son más homogéneos que los patrónes de gasto en ALNS.
 
 ### Análisis conjunto: nivel socioeconómico, insuficiencia laimentaria y disponibilidad de ingresos extra
