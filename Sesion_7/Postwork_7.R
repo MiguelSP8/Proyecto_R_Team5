@@ -43,20 +43,20 @@ plot(diff(Global.ts), type = "l", main = "Serie de tiempo de diferencia de prime
 "
 # Función de auto-correlación: acf(), mide correlación ente variables temporales 
 # separadas por K-periodos de rezago
-# Se usa para identificar el proceso de media movil (MA(q)) en los modelos ARIMA
+# Se usa para identificar el proceso de media movil (MA(p)) en los modelos ARIMA
 acf(Global.ts)
 # Muchos intervalos significativos => serie Global.ts no estacionaria
 acf(diff(Global.ts))
 # En este caso podemos ver que a partir del intervalo 4, la correlación es inexistente.
-# Es decir, el parametro para un proceso de media movil es q<=4
+# Es decir, el parametro para un proceso de media movil es p<=4
 #
 # Al diferenciar una vez, la serie se vuelve estacionaria, por tanto, es un proceso estacionario I(d=1)
 #
 # Función de auto-correlación parcial: pacf(), mide correlación ente variables temporales 
 # separadas por K-periodos de rezago, sin tomar en cuenta la dependencia creada por los retardos intermedios.
-# Se usa para identificar valores autorregresivos (AR(p)) en los modelos ARIMA
+# Se usa para identificar valores autorregresivos (AR(q)) en los modelos ARIMA
 pacf(diff(Global.ts))
-# En este caso, podmeos ver que el intervalo 1 es el más pronunciado. AR(p=1)
+# En este caso, podmeos ver que el intervalo 1 es el más pronunciado. AR(q=1)
 "
 6) De acuerdo con lo observado en las gráficas anteriores, se sugiere un modelo ARIMA
 con AR(1), I(1) y MA desde 1 a 4 rezagos Estima los diferentes modelos ARIMA propuestos:
