@@ -24,6 +24,12 @@ ln_als (Logaritmo natural del gasto en alimentos saludables)
 ln_alns (Logaritmo natural del gasto en alimentos no saludables)
 IA (Inseguridad alimentaria en el hogar): 0 "No presenta IA", 1 "Presenta IA"
 '
+# Carga de paqueterias de interés para el proyecto
+library(dplyr)
+library(DescTools)
+library(moments)
+library(ggpubr)
+#
 # Adquisición de datos
 df<-read.csv("https://raw.githubusercontent.com/beduExpert/Programacion-R-Santander-2022/main/Sesion-08/Postwork/inseguridad_alimentaria_bedu.csv")
 head(df)
@@ -74,12 +80,6 @@ View(df)
 "
 2) Realiza un análisis descriptivo de la información
 "
-# Carga de paqueterias de interés para el proyecto
-library(dplyr)
-library(DescTools)
-library(moments)
-library(ggpubr)
-#
 # Se está trabajando con un extracto de la Encuesta Nacional de Salud y Nutrición (2012)
 # levantada por el Instituto Nacional de Salud Pública en México. En busca de llevar a cabo 
 # el análisis descriptivo de la información, comenzaremos por estudiar cómo está constituida
