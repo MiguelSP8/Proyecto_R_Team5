@@ -127,40 +127,35 @@ En consideración de lo anterior, el siguiente data frame solo se presentan los 
     <img width="66%" src="https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/DF_ord.png">
 </p>
 
-Con base en los resultados ariba presentados, podemos realizar las siguientes observaciones:
+Con base en los resultados arriba presentados, podemos realizar las siguientes observaciones:
 
-- De lo anterior, se encuentra que los hogares que pertenecen a la categoria refin=No, IA=No y NSEF5=Alto son los que más gastan en alimentos no saludables en comparación al gasto en alimentos saludables. Mientras que los hogares que pertenecen a la categoria refin=Si, IA=Si, NSEF5=Bajo son quienes destinan menos dinero al consumo de alimentos no saludables en relación al consumo de alimentos saludables.
+- Los hogares que pertenecen a la categoria refin=No, IA=No y NSEF5=Alto son los que más gastan en alimentos no saludables en comparación al gasto en alimentos saludables. Mientras que los hogares que pertenecen a la categoria refin=Si, IA=Si, NSEF5=Bajo son quienes destinan menos dinero al consumo de alimentos no saludables en relación al consumo de alimentos saludables.
 - En general se puede ver que, contrario a la opinión publica, los hogares con mejor nivel socioeconómico destinan más dinero al consumo de alimentos NO saludables en comparación al usado para el consumo de alimentos saludables, absuluta y relativamente.
-- Para todos los NSE, se encuentra que los hogares que padecen IA priorizan el gasto en ALS sobre los ALNS, los que reciben ingresos extra un poco más que los que no.
+- Para todos los NSE, se encuentra que los hogares que padecen IA priorizan el gasto en ALS sobre los ALNS en comparación con los hogares que no la padecen, así mimso, los que reciben ingresos extra priorizan dicho gasta un poco más que los que no.
 
 ## 2) Análisis de probabilidades
 
-Dado las observaciones que se realizaron en el análisis exploratorio descriptivo y probabilistico, se presentan los siguientes análisis de probabilidad. 
+Dado las observaciones que se realizaron en los análisis exploratorio y descriptivo previos, se presentan los siguientes análisis de probabilidad en busca de entender el problema en México. 
 
 
-1. ¿Cuál es la probabilidad de que los hogares que NO reciben ingresos extra, destinen relativamente más recursos al consumo de ALNS, que el promedio de
-los hogares que SI perciben ingresos extra?
+1. ¿Cuál es la probabilidad de que los hogares que NO reciben ingresos extra, destinen relativamente más recursos al consumo de ALNS, que el promedio de los hogares que SI perciben ingresos extra?
 
 ![**Figura 2.1:** Gráfica de densidad de probabilidad NIE vs SIE](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/grafica_E1.png "Figura 2.1: Gráfica de densidad de probabilidad NIE vs SIE")
 
-**Figura 2.1:** Gráfica de densidad de probabilidad NO ingresos extra > SI ingresos extra.
-En esta gráfica observamos una distribución de probabilidad de tipo LEPTOCURTICA, con un promedio de 0.6714 y un quantil de 0.6604, de tipo cola superior.
+**Figura 2.1:** Gráfica de densidad de probabilidad de rateNS para los hogares que no perciben ingresos extra. En esta gráfica observamos una distribución de probabilidad de tipo LEPTOCURTICA. El promedio de rateNS en los hogares que no perciben ingresos extra es mu = 0.6714. El quantil q = 0.6604, hace referencia al promedio de rateNS en los hogares que sí perciben ingresos extra. Usamos este ultimo como quantil para estimar la probabilidad deseada, usando la opción cola superior para ello.
 
 
 #### Conclusiones:
 
-Como se puede apreciar en la gráfica 2.1, obtenemos una probabilidad del **0.525** de que un hogar que NO percibe ingresos extra, gaste más en ALNS, que el promedio
-del gasto de un hogar, que SI percibe ingresos extra.
+Como se puede apreciar en la gráfica 2.1, obtenemos una probabilidad del **0.525** de que un hogar que NO percibe ingresos extra, gaste más relativamente en ALNS, que el promedio del gasto relativo de un hogar, que SI percibe ingresos extra.
 
 
 
-2. ¿Cuál es la probabilidad de que los hogares que padecen IA relativamente, destinen más recursos al consumo de ALNS, que el promedio de los hogares que NO
-padecen IA?
+2. ¿Cuál es la probabilidad de que los hogares que padecen IA relativamente, destinen más recursos al consumo de ALNS, que el promedio de los hogares que NO padecen IA?
 
 ![**Figura 2.2:** Gráfica de densidad de probabilidad si IA vs no IA](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/grafica_E2.png "Figura 2.2: Gráfica de densidad de probabilidad si IA vs no IA")
 
-**Figura 2.2:** Gráfica de densidad de probabilidad SI inseguridad alimentaria > NO inseguridad alimentaria.
-En esta gráfica observamos una distribución de probabilidad de tipo LEPTOCURTICA, con un promedio de 0.6596 y un quantil de 0.6933, de tipo cola superior.
+**Figura 2.2:** Gráfica de densidad de probabilidad de rateNS para los hogares padecen insuficiencia alimentaria. En esta gráfica observamos una distribución de probabilidad de tipo LEPTOCURTICA. El promedio de rateNS en los hogares que padecen insuficiencia alimentaria es mu = 0.6596. El quantil q = 0.6933, hace referencia al promedio de rateNS en los hogares que no padecen IA. Usamos este ultimo como quantil para estimar la probabilidad deseada, usando la opción cola superior para ello.
 
 
 #### Conclusiones:
@@ -169,13 +164,11 @@ Existe una probabilidad del **0.423** de que un hogar que padece IA, gaste relat
 
 
 
-3. ¿Cuál es la probabilidad de que los hogares que pertenecen a un NSE Bajo, destinen más recursos al consumo de ALNS, que el promedio de los hogares que 
-pertenecen a un NSE Alto?
+3. ¿Cuál es la probabilidad de que los hogares que pertenecen a un NSE Bajo, destinen más recursos al consumo de ALNS, que el promedio de los hogares que pertenecen a un NSE Alto?
 
 ![**Figura 2.3:** Gráfica de densidad de probabilidad NSE Bajo vs NSE Alto](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/img/grafica_E3.png "Figura 2.3: Gráfica de densidad de probabilidad NSE Bajo vs NSE Alto")
 
-**Figura 2.3:** Gráfica de densidad de probabilidad NSE Bajo > NSE Alto.
-En esta gráfica observamos una distribución de probabilidad de tipo LEPTOCURTICA, con un promedio de 0.6447 y un quantil de 0.7089, de tipo cola superior.
+**Figura 2.3:** Gráfica de densidad de probabilidad de rateNS para los hogares que pertenecen al NSE bajo. En esta gráfica observamos una distribución de probabilidad de tipo LEPTOCURTICA. El promedio de rateNS en los hogares que pertenecen al NSe bajo es es mu = 0.6447. El quantil q = 0.7089, hace referencia al promedio de rateNS en los hogares que pertenecen al nivel socioeconómico alto. Usamos este ultimo como quantil para estimar la probabilidad deseada, usando la opción cola superior para ello.
 
 
 #### Conclusiones:
