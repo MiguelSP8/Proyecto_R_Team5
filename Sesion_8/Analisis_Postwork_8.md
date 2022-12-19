@@ -309,32 +309,36 @@ Con niveles de confianza de 90%,95% y 99%, existe evidencia estadística para re
 
 ## 4) Modelo de regresión logística
 
-En este punto se requiere estimar la probabilidad de que un hogar presente inseguridad alimentaria o no, al hablar de probabilidad 
-significa que necesitamos hacer un modelo de regresión logística.
+En este punto se requiere encontrar los factores determinates para que un hogar mexicano presente o no insuficiencia alimentaria. Así mismo, se desea estimar la razon de probabilidades de que un hogar presente o no dicho problema, asociada a cada variable. Al hablar de probabilidades, esto
+implica que necesitamos hacer un modelo de regresión logística.
 
 Recordando:
 
-_La regresión logística es un tipo de análisis de regresión utilizado para predecir el resultado de una variable categórica en función de las variables independientes o predictoras._
-
-_Es útil para modelar la probabilidad de un evento ocurriendo en función de otros factores._
+_La regresión logística es un tipo de análisis de regresión utilizado para predecir el resultado de una variable categórica en función de las variables independientes o predictoras. Es útil para modelar la probabilidad de un evento ocurriendo en función de otros factores._
 
 **Análisis: 📋**
 
-1.- Dentro del análisis de correlaciones entre variables numericas, se determinó que no hay evidencia de correlación entre las variables numéricas que describen el problema.
+Comenzamos nuesto análisis con el estudio de las correlaciones entre variables numericas, se determinó que no hay evidencia de correlación entre dichas variables.
 
 ![**Figura 4.1:** Análisis de correlaciones entre variables numericas.](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/mdoswaldo/Sesion_8/img/5_1_boxplot.PNG "Figura 4.1: Análisis de correlaciones entre variables numericas.")
 
 **Figura 4.1:** Análisis de correlaciones entre variables numericas.
 
-2.- De acuerdo al modelo de regresión logística y utilizando todas las variables disponibles se plantea lo siguiente: 
+Posteriormente, construimos un modelo de regresión logística, utilizando todas las variables disponibles, en busca de determinar cuales son los estadísticos relevantes para el modelo. Para ello se plantearon las siguientes hipótesis: 
 
     *Planteamiento de hipótesis:*
         * H_0: Bi = 0
         * H_a : Bi != 0
+Haciendo uso del criterio del pvalue:
+
+* pvalue < significancia, se rechaza H_0 en favor de H_a
+* pvalue > significancia, no se rechaza H_0
+
+Las observaciones asociadas a dicho análisis se pueden ver en la tabla siguiente.
 
 **Observaciones: 📋**
 
-| Variables | p-value | Estadístico para el modelo |
+| Variables | p-value | Estadístico relevante |
 | --- | --- | --- |
 | intercepto | < 2x10^-16 | Si | 
 | nse5fMedio bajo | 1.97x10^-6 | Si |
@@ -350,11 +354,40 @@ _Es útil para modelar la probabilidad de un evento ocurriendo en función de ot
 | ln_als | 0.001389 | Si |
 | ln_alns | 8.39e-09 | Si |
     
-Se quito la variable **edadjef** y se creó un nuevo modelo.
+De la tabla de datos anterior, se puede ver que la variable **edadjef** no es un estadístico adecuado para el sistema. Considerando esto, se creó un nuevo modelo excluyendo dicha variable. Los datos asociados con el segundo modelo se muestran en la siguiente tabla.
 
-**Conclusiones⚙️**
+| Variables | p-value | Estadístico relevante | odds-momios |
+| --- | --- | --- | --- |
+| intercepto | < 2x10^-16 | Si | 11.7895649 | 
+| nse5fMedio bajo | 2.28x10^-16 ° Si | 0.7372021 |
+| nse5fMedio | < 2e-16 | Si | 0.5893272 |
+|nse5fMedio alto | < 2e-16 | Si | 0.4087232 |
+| nse5fAlto | < 2e-16 | Si | 0.2269539 |
+| areaRural  | 0.032171 | Si | 0.9156154 |
+| numpeho | < 2e-16 | Si | 1.1914034 |
+| refinSi | < 2e-16 | Si | 1.4830742 |
+| sexojef | 0.000256 | Si | 1.1630108  |
+| añosedu | < 2e-16 | Si | 0.9485316 |
+| ln_als | 0.001296 | Si | 0.9120567 |
+| ln_alns | 5.20e-09 | Si | 0.9061236 |
 
-* Considerando la interpretación de los coeficientes **odds**
+Interpretación de los momios: exp(log odds)
+
+* La probabilidad de padecer IA para un hogar con NSE5F "Medio bajo" es 0.7372 la probabilidad de padecer IA para un hogar con NSE5F "bajo" 
+* La probabilidad de padecer IA para un hogar con NSE5F "Medio" es 0.5893 la probabilidad de padecer IA para un hogar con NSE5F "bajo" 
+* La probabilidad de padecer IA para un hogar con NSE5F "Medio alto" es 0.4087 la probabilidad de padecer IA para un hogar con NSE5F "bajo" 
+* La probabilidad de padecer IA para un hogar con NSE5F "Alto" es 0.2269 la probabilidad de padecer IA para un hogar con NSE5F "bajo" 
+* La probabilidad de padecer IA en una zona rural es 0.9156 la probabilidad de padecer IA en una zona urbana
+* La probabilidad de padecer IA para un hogar con NSE5F "Medio bajo" es 0.7372 la probabilidad de padecer IA para un hogar con NSE5F "bajo" 
+* Con el incremento unitario en el número de personas que habitan el hogar, "numpeho", la probabilidad de padecer IA es 1.0326 veces la probabilidad sin dicho aumento
+* La probabilidad de padecer IA para un hogar con ingresos extra (refin=Si) es 1.1914 la probabilidad de padecer IA para un hogar sin ingresos extra (refin=No) 
+* La probabilidad de padecer IA para un hogar con jefe de familia mujer es 1.483 la probabilidad de padecer IA para un hogar con jefe de familia hombre
+* Con el incremento unitario en el número de años de educación, "años edu", la probabilidad de padecer IA es 0.9485 veces la probabilidad sin el aumento
+* Con el incremento unitario en el "ln_als", la probabilidad de padecer IA es 0.912 veces la probabilidad sin el aumento
+* Con el incremento unitario en el "ln_als", la probabilidad de padecer IA es 0.906 veces la probabilidad sin el aumento
+
+**Conclusiones**
+
 
 1. La probabilidad de padecer insuficiencia alimentaria es menor conforme aumenta el nivel socioeconómico del hogar, en comparación con la probabilidad de padecer insuficiencia alimentaria para un hogar con un nivel socioeconómico bajo.
 
