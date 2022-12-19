@@ -2,9 +2,9 @@
 
 **Equipo 5 BEDU**
 
-* Miguel Angel Sandoval Puentes (ma.sandovalpuentes@ugto.mx)  - *Desarrollo y Análisis* - [Miguel](https://github.com/)
-* José Carlos Cuevas(jcarlos_cuevas_olayo@hotmail.es) - *Desarrollo y Análisis* - [José](https://github.com/)
-* Oswaldo Helí Ramírez González (oswaldo.ramirez@unicach.mx) - *Desarrollo y Análisis* - [Oswaldo](https://github.com/)
+* [Miguel Angel Sandoval Puentes](https://github.com/MiguelSP8) (ma.sandovalpuentes@ugto.mx)  - *Desarrollo y Análisis* 
+* [José Carlos Cuevas](https://github.com/CUOC907A) (jcarlos_cuevas_olayo@hotmail.es) - *Desarrollo y Análisis*
+* [Oswaldo Helí Ramírez González](https://github.com/waldohr1)) (oswaldo.ramirez@unicach.mx) - *Desarrollo y Análisis*
 * Marisol Juarez (14872@uagro.mx)
 * Enrique Soto Avila (enrique.soto.avila@outlook.com)
 * Ephrain Toledo (nextelfops@gmail.com)
