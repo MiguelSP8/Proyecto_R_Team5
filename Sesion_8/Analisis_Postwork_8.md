@@ -2,10 +2,13 @@
 
 **Equipo 5 BEDU**
 
-* **Miguel** - *Desarrollo y Análisis* - [Miguel](https://github.com/)
-* **Jose** - *Desarrollo y Análisis* - [José](https://github.com/)
-* **Oswaldo** - *Desarrollo y Análisis* - [Oswaldo](https://github.com/)
-
+* Miguel Angel Sandoval Puentes (ma.sandovalpuentes@ugto.mx)  - *Desarrollo y Análisis* - [Miguel](https://github.com/)
+* José Carlos Cuevas(jcarlos_cuevas_olayo@hotmail.es) - *Desarrollo y Análisis* - [José](https://github.com/)
+* Oswaldo Helí Ramírez González (oswaldo.ramirez@unicach.mx) - *Desarrollo y Análisis* - [Oswaldo](https://github.com/)
+* Marisol Juarez (14872@uagro.mx)
+* Enrique Soto Avila (enrique.soto.avila@outlook.com)
+* Ephrain Toledo (nextelfops@gmail.com)
+* Alejandro (jkbojorquez@outlook.com)
 
 # Análisis de resultados obtenidos en el desarrollo del Postwork asociado a la sesión 8
 * [Código fuente en R Postwork 8](https://github.com/MiguelSP8/Proyecto_R_Team5/blob/main/Sesion_8/Postwork_8.R)
