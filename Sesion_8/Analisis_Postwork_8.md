@@ -363,6 +363,6 @@ Se quito la variable **edadjef** y se creó un nuevo modelo.
 
 5. Los años de educación del jefe del hogar disminuyen la probabilidad de padecer insuficiencia alimentaria.
 
-6. El aumento en el gasto para la adquisición de alimnetos, tanto saludables como no saludables, disminuye el riesgo de padecer insuficiencia alimentaria.
+6. El aumento en el gasto para la adquisición de alimentos, tanto saludables como no saludables, disminuye el riesgo de padecer insuficiencia alimentaria.
 
 
